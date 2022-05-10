@@ -1,0 +1,145 @@
+@import url('http://fonts.cdnfonts.com/css/amiri');
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Amiri', sans-serif;
+}
+
+.login-form {
+    width: 100%;
+    display: grid;
+    padding-top: 63px;
+    grid-template-columns: 1fr 1fr;
+    background-attachment: fixed;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../images/background-form\ \(2\).jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(15px);
+    height: 100vh;
+}
+
+.form1 {
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 35px 68px 0 rgb(170 63 254 / 15%), inset 0 -8px 16px 0 #d6a2ff57;
+    width: 280px;
+    display: grid;
+    justify-items: center;
+    transform: rotate3d(1, 1, 1, -28deg);
+    height: 30em;
+    margin-left: 256px;
+}
+
+.form1 img {
+    width: 15em;
+}
+
+.form1 p {
+    font-size: 0.89em;
+    width: 16em;
+}
+
+.form2 {
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 35px 68px 0 rgb(170 63 254 / 15%), inset 0 -8px 16px 0 #d6a2ff57;
+    width: 287px;
+    display: grid;
+    justify-items: center;
+    height: 30em;
+}
+
+.text-log {
+    text-align: center;
+}
+
+.text-log H2 {
+    text-align: center;
+    font-size: 1.6em;
+}
+
+.form-input {
+    width: 16em;
+    height: 3em;
+    border-radius: 7px;
+    border: none;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.3);
+    border-left: 5px solid #D6A2FF;
+    box-shadow: 1px 2px 1px #b1c5d4;
+    outline: none;
+    font-size: .88em;
+    padding-left: 20px;
+}
+
+.inputs {
+    display: grid;
+    align-content: stretch;
+    padding-bottom: 35px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.form-input:focus {
+    border: none;
+}
+
+.btn-login {
+    border-radius: 7px;
+    border: none;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 8px 0 rgb(170 63 254 / 10%), inset 0 -8px 16px 0 #d6a2ffa1;
+    width: 16em;
+    height: 3em;
+    font-size: .99em;
+}
+
+.btn-login:hover {
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 8px 0 rgba(63, 254, 209, 0.1), inset 0 -8px 16px 0 #a2ffefa1;
+}
+
+.up {
+    border-radius: 5px;
+    border: none;
+    backdrop-filter: blur(15px);
+    background: #ffffff;
+    width: 6.2em;
+    height: 3em;
+    font-size: .99em;
+    color: #0b0b0b;
+}
+
+.up:hover {
+    backdrop-filter: blur(15px);
+    background: #ffffff;
+    box-shadow: 0 35px 68px 0 rgb(170 63 254 / 15%), inset 0 -8px 16px 0 #d6a2ff57;
+}
+
+.in {
+    border-radius: 5px;
+    border: none;
+    backdrop-filter: blur(15px);
+    background: transparent;
+    width: 5.92em;
+    height: 3em;
+    font-size: .99em;
+}
+
+.btn-sign {
+    border-radius: 15px;
+    background: transparent;
+    height: 3em;
+    border: 2px solid #ffffff;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 12em;
+    justify-items: center;
+    align-items: center;
+    font-weight: 500;
+}
