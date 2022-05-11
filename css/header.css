@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+#logo {
+    width: 6em;
+    padding: 10px;
+}
+
+
+
+.d-flex {
+    padding-left: 2em;
+}
+
+#logout {
+    margin-left: 30em;
+    width: 6em;
+    background-color:purple;
+    border-radius: 20px;
+    text-align: center;
+    margin-right: 90px;
+}
+#logout a {
+    color: white;
+        
+}
+
+#border {
+    border-color: purple;
+    color: purple;
+}
+
+#border:hover {
+    background-color: purple;
+}
+
+#home {
+    margin-left: 5em;
+}
