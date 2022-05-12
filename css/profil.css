@@ -1,0 +1,11 @@
+.banner{height: 500px;
+    width: 100%;
+    background-color: blue;
+}
+
+.profile_pic{
+    height: 200px;
+    width: 300px;
+    background-color: grey;
+    border-radius: 50%;
+}
