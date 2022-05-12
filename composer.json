@@ -1,5 +1,5 @@
 {
     "require": {
-        "fakerphp/faker": "^1.19"
+        "fzaninotto/faker": "^1.5"
     }
 }
