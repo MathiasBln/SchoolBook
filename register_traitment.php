@@ -11,9 +11,12 @@
         $email = htmlspecialchars($_POST['email']);
         $password = htmlspecialchars($_POST['password']);
         $password_retype = htmlspecialchars($_POST['password_retype']);
+       
+
+        
 
         // On vérifie si l'utilisateur existe
-        $check = $pdo->prepare('SELECT name, last_name, birth_date, email, password FROM users WHERE email = ?');
+        $check = $pdo->prepare('SELECT name, last_name, birth_date, email, password, avatar FROM users WHERE email = ?');
         $check->execute(array($email));
         $data = $check->fetch();
         $row = $check->rowCount();
@@ -44,6 +47,8 @@
                                 'password' => $password,
                                 'ip' => $ip,
                                 'token' => bin2hex(openssl_random_pseudo_bytes(64)),
+                                
+
 
                             ));
                             // On redirige avec le message de succès

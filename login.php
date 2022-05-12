@@ -13,7 +13,7 @@
         $email = strtolower($email); // email transformé en minuscule
         
         // On regarde si l'utilisateur est inscrit dans la table utilisateurs
-        $check = $pdo->prepare('SELECT name, email, password, token FROM users WHERE email = ?');
+        $check = $pdo->prepare('SELECT name, email, password, token, avatar FROM users WHERE email = ?');
         $check->execute(array($email));
         $data = $check->fetch();
         $row = $check->rowCount();
@@ -31,6 +31,7 @@
                 {
                     // On créer la session et on redirige sur dashboard.php
                     $_SESSION['user'] = $data['token'];
+                    $_SESSION['avatar'] = $data['avatar'];
                     header('Location: dashboard.php');
                     die();
                 }else{ header('Location: index.php?login_err=password'); die(); }

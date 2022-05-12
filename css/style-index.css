@@ -8,6 +8,7 @@ body {
 .login-form {
     width: 100%;
     display: grid;
+    justify-items: center;
     padding-top: 63px;
     grid-template-columns: 1fr 1fr;
     background-attachment: fixed;
@@ -26,9 +27,8 @@ body {
     width: 280px;
     display: grid;
     justify-items: center;
-    transform: rotate3d(1, 1, 1, -28deg);
+    transform: rotateZ(-20deg);
     height: 30em;
-    margin-left: 256px;
 }
 
 .form1 img {
@@ -142,4 +142,18 @@ a {
     justify-items: center;
     align-items: center;
     font-weight: 500;
+}
+
+.alert {
+    background: rgb(255 21 21 / 59%);
+    box-shadow: 0 35px 68px 0 rgb(170 63 254 / 15%), inset 0 -8px 16px 0 #d6a2ff57;
+    height: 3em;
+    position: absolute;
+    border-radius: 7px;
+    width: 18em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    top: 11px;
 }

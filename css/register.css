@@ -28,7 +28,7 @@ body {
     width: 287px;
     display: grid;
     justify-items: center;
-    height: 35em;
+    height: 42em;
 }
 
 .text-register h2 {
@@ -52,6 +52,11 @@ body {
     outline: none;
     font-size: .88em;
     padding-left: 20px;
+}
+
+.form-label {
+    font-size: 1.2em;
+    font-weight: 700;
 }
 
 .inputs-register {

@@ -12,8 +12,8 @@
                     {
                         case 'password':
                         ?>
-                            <div class="alert alert-danger">
-                                <strong>Error</strong> Password incorrect
+                            <div class="alert">
+                                <p>Error Password incorrect <a href="index.php"> sign in again</a></p> 
                             </div>
                         <?php
                         break;
@@ -43,7 +43,7 @@
         <form action="register.php" class="form1">
             <h1>SchoolBook</h1>
             <img src="./images/booking-removebg-preview.png" alt="">
-            <p>Discovery Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            <p>I guess you are new account here. You can start using the application after sign up !</p>
             <div class="btn-sign">
                 <button type="submit" class="up">Register</button>
                 <button class="in">Sign In</button>
@@ -53,7 +53,7 @@
         <form action="login.php" method="post" class="form2">
             <div class="text-log">
             <h2>Hello again</h2>
-            <p>Welcome Back you've been missed!</p>
+            <p>I'm happy to see you again !</p>
             </div>
             
             <div class="inputs">

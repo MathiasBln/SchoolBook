@@ -46,11 +46,26 @@
 
                 <div class="text-center">
                         <h1 class="p-5">Bonjour <?php echo $data['name']; ?> !</h1>
+                        
+                        <?php
+                        if(isset($_SESSION['avatar'])){
+                        ?>
+                        <div style="margin: 10px 0">
+                            <div style="background: url(<?= 'upload/' . $_SESSION['user'] . '/' . $_SESSION['avatar']?>) no-repeat center; background-size: cover; width: 150px; height: 150px"></div>
+                        </div>
+                        <?php
+                            }
+                        ?>
+
                         <hr />
                         <a href="logout.php" class="btn btn-danger btn-lg">Déconnexion</a>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#change_password">
                           Changer mon mot de passe
+                        </button>
+
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#avatar">
+                          ajouter un avatar
                         </button>
                 </div>
             </div>
@@ -72,7 +87,7 @@
                             </button>
                          </div>
                             <div class="modal-body">
-                                <form action="layouts/change_password.php" method="POST">
+                                <form action="change_password.php" method="POST">
                                     <label for='current_password'>Mot de passe actuel</label>
                                     <input type="password" id="current_password" name="current_password" class="form-control" required/>
                                     <br />
@@ -102,13 +117,16 @@
                                 </button>
                         </div>
                         <div class="modal-body">
-                            <form action="layouts/change_avatar.php" method="POST" enctype="multipart/form-data">
-                                <label for="avatar">Images autorisées : png, jpg, jpeg, gif - max 20Mo</label>
-                                <input type="file" name="avatar_file">
+                            <form action="change_avatar.php" method="POST" enctype="multipart/form-data">
+                                <label for="avatar">Images autorisées : png, jpg, jpeg- max 20Mo</label>
+                                <input type="file" name="avatar">
                                 <br />
-                                <button type="submit" class="btn btn-success">Modifier</button>
+                                <input type="submit" class="btn btn-success" name="envoyer" value="ajouter la photo">
+                                
                             </form>
+         
                         </div>
+            
                         <br />
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>

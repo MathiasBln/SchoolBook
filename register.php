@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/register.css">
+    <link rel="stylesheet" href="./css/Register.css">
     <title>SchoolBook</title>
 </head>
 <body>
@@ -27,7 +27,7 @@
          
                                 <div class="text-box">
                                     <h2>Go Sign In</h2>
-                                    <p><strong>Success</strong> Successful registration !</p>
+                                    <p><strong>CONGRATULATION</strong> Your account has been Successfully created !</p>
                                 <button type="submit" class="btn-box"><i class="gg-arrow-right"></i></button>
 
                                 </div>
@@ -76,7 +76,7 @@
                 }
                 ?>
             
-            <form action="register_traitment.php" method="post" class="register-form">
+            <form action="register_traitment.php" method="post" class="register-form" enctype="multipart/form-data" >
                 <div class="text-register">
                 <h2>Register</h2>
                 <p>already have an account? <a href="index.php"> Sign In</a></p>    
@@ -96,6 +96,10 @@
              
                 
                     <input type="password" name="password_retype" class="form-input" placeholder="Re-tapez le mot de passe" required="required" autocomplete="off">
+
+                    <label class="form-label">Profile Picture</label>
+                    <input type="file" class="form-input" name="avatar">
+		                   
                 </div>
                 <div class="btn-register">
                   <button type="submit">Sign Up</button>
