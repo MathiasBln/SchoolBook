@@ -1,13 +1,23 @@
 <?php
+$id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
 $dbname = 'db_schoolbook';
 $username = 'root';
 $password = 'root';
 
 $pdo = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
+# Pkoi pas de ; à la fin de la requête sql ici ?
+# 1ère vérification : la requête sort bien un résultat limité ici à 2 rows (car sinon c 500 rows !!).
+$maRequete = $pdo->prepare("SELECT * FROM `groups`, `users`, `groups_has_users`, `posts`, `comments` 
+                            WHERE groups_has_users.groups_idgroups = 10
+                            AND groups_has_users.users_iduser = iduser
+                            AND posts.groups_idgroups = 10
+                            AND posts.idposts = idposts
+                            LIMIT 2");
 
-$maRequete = $pdo->prepare("SELECT * FROM `groups` WHERE idgroups=1");
 $maRequete->execute();
 $groups = $maRequete->fetchAll(PDO::FETCH_ASSOC);
+
+// var_dump($groups[0]);
 
 ?>
 
@@ -23,6 +33,7 @@ $groups = $maRequete->fetchAll(PDO::FETCH_ASSOC);
     <!-- Bootstrap nav-bar style -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/8e346a8501.js" crossorigin="anonymous"></script>
     <title><?= $groups[0]["name"] ?></title>
 </head>
 <body>
@@ -38,8 +49,9 @@ $groups = $maRequete->fetchAll(PDO::FETCH_ASSOC);
                     <img src="./assets/group-logo.svg" class="rounded-circle" alt="group logo">
                 </div>
                 <div class="like-icon">
-                    <img src="./assets/thumb_up.svg" alt="bouton like inactif" class="inactive-like">
-                    <img src="./assets/thumb_up_active.svg" alt="bouton like actif" class="active-like">
+                    <button id="btn-like" class="bg-transparent border-0 text-secondary" type="button">
+                    <i class="fa-solid fa-color fa-thumbs-up fa-2xl"></i>
+                    </button>
                     <h3>J'aime</h3>
                 </div> 
             </section>
@@ -66,8 +78,8 @@ $groups = $maRequete->fetchAll(PDO::FETCH_ASSOC);
     <main>
     <div class="container">
      <div class="a-propos-groupe">
-            <h1>A propos</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde autem quia sed perferendis possimus quis assumenda incidunt veniam commodi nam placeat vitae reprehenderit sapiente illum, praesentium porro recusandae quibusdam suscipit fugiat nulla aperiam aspernatur. In laboriosam aspernatur perferendis, veritatis labore minus hic voluptatem officia necessitatibus id eligendi non velit et?</p>
+            <h1>Nous connaître :</h1>
+            <p><?= $groups[0]["description"]?></p>
         </div>
     </div>
      
@@ -77,11 +89,11 @@ $groups = $maRequete->fetchAll(PDO::FETCH_ASSOC);
         <div class="image-circle">
             <img src="./assets/group-logo.svg" class="rounded-circle" alt="logo de la page connexe">
             <div class="first-page-titles">
-            <h3><?= $pages[0]["title"]?></h3>
-            <h4>When</h4>
+            <h3>Post n° <?=$groups[0]["idposts"]?></h3>
+            <h4><?= $groups[0]["date_publish"]?></h4>
             </div>
         </div>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita est neque asperiores nisi.</p>
+        <p><?= $groups[0]["content"]?></p>
         <div class="example-page-image-container">
             <div class="example-page-image"></div>
         </div>
@@ -97,11 +109,11 @@ $groups = $maRequete->fetchAll(PDO::FETCH_ASSOC);
         <div class="image-circle">
             <img src="./assets/group-logo.svg" class="rounded-circle" alt="logo de la page connexe">
             <div class="first-page-titles">
-            <h3><?= $pages[1]["title"]?></h3>
-            <h4>When</h4>
+            <h3><?= $groups[1]["idposts"]?></h3>
+            <h4><?= $groups[1]["date_publish"]?></h4>
             </div>
         </div>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita est neque asperiores nisi.</p>
+        <p><?=$groups[1]["content"]?></p>
         <div class="example-page-image-container">
             <div class="example-page-image"></div>
         </div>

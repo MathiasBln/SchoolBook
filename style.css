@@ -49,17 +49,24 @@ header {
 
 }
 
-/* Icon issu de "Google font" pour aimer la page */
+/* Icone pour aimer la page */
+
+.fa-thumbs-up {
+    color: #5a189a!important;
+}
+
+.fa-thumbs-up:hover {
+    font-size:250%!important;
+}
+
+.fa-thumbs-up:active {
+    color:green!important;
+}
+
 
 .like-icon {
     margin:1em;
     height:5vh;
-}
-
-.like-icon img {
-    padding:0.5em;
-    height:100%;
-    width:auto;
 }
 
 .like-icon h3 {
