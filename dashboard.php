@@ -12,8 +12,13 @@
     $req = $pdo->prepare('SELECT * FROM users WHERE token = ?');
     $req->execute(array($_SESSION['user']));
     $data = $req->fetch();
+
+    $requete = $pdo->prepare('SELECT name FROM schools WHERE idschools = ?');
+    $requete->execute(array($_SESSION['user']));
+    $dataname = $requete->fetch();
    
 ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -21,13 +26,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/landing.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
 
 
-        <div class="container">
-            <div class="col-md-12">
+            <div class="contain-profil">
                 <?php 
                         if(isset($_GET['err'])){
                             $err = htmlspecialchars($_GET['err']);
@@ -42,34 +47,37 @@
                             }
                         }
                     ?>
+                
+                <div class="info-profil">
+                    <?php
+                            if(isset($_SESSION['avatar'])){
+                            ?>
+                                <div style="background: url(<?= 'upload/' . $_SESSION['user'] . '/' . $_SESSION['avatar']?>) no-repeat center; background-size: cover; width: 150px; height: 150px; border-radius: 50%"></div>
+                            <?php
+                                }
+                            ?>
+                    <div class="content-user">
+                        <ul class="contact-user">
+                            <li class="name"><?php echo $data['name']; ?> <?php echo $data['last_name']; ?></li>
+                            <li><?php echo $data['email']; ?></li>
+                            <li>School : <?php echo $dataname['name']; ?></li>
+                        </ul>
+                        <ul class="edit-user">
+                            <li class="editer-txt">Edit profil</li>
+                            <li><a href="#" data-toggle="modal" data-target="#avatar">Change avatar</a></li>  
+                            <li> <a href="#" data-toggle="modal" data-target="#change_password">Change password</a></li>
+                        </ul>
+                    </div>
+                </div>
+            
+                <div class="content-profil">
+                    <?php require('partials/header.php'); ?>
 
-
-                <div class="text-center">
-                        <h1 class="p-5">Bonjour <?php echo $data['name']; ?> !</h1>
-                        
-                        <?php
-                        if(isset($_SESSION['avatar'])){
-                        ?>
-                        <div style="margin: 10px 0">
-                            <div style="background: url(<?= 'upload/' . $_SESSION['user'] . '/' . $_SESSION['avatar']?>) no-repeat center; background-size: cover; width: 150px; height: 150px"></div>
-                        </div>
-                        <?php
-                            }
-                        ?>
-
-                        <hr />
-                        <a href="logout.php" class="btn btn-danger btn-lg">Déconnexion</a>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#change_password">
-                          Changer mon mot de passe
-                        </button>
-
-                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#avatar">
-                          ajouter un avatar
-                        </button>
+                    <h1>Welcome <?php echo $data['name']; ?> !</h1>
+                    <p>this is your overall social media development</p>
                 </div>
             </div>
-        </div>    
+          
 
        
 

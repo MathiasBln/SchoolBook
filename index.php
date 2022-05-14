@@ -1,5 +1,13 @@
-<?php require('partials/header.php'); ?>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style-index.css">
+    <title>SchoolBook</title>
+</head>
+<body>
     <div class="login-form">
 
 
@@ -59,11 +67,13 @@
             <div class="inputs">
             <input type="email" class="form-input" placeholder="| Email" name="email" required="required" autocomplete="off">
             <input type="password" class="form-input" placeholder="| Password" name="password" required="required" autocomplete="off">
-            <a href="">forget password?</a>
+            <a href="forgot_password.php">forget password?</a>
             </div>
             <button type="submit" class="btn-login">Sign In</button>
         </form>
         
 
     </div>
-    <?php require('partials/footer.php'); ?>
+    </body>
+</html>
+

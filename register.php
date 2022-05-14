@@ -1,11 +1,12 @@
 <!-- va contenir le formulaire d'inscription -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/Register.css">
+    <link rel="stylesheet" href="./css/register.css">
     <title>SchoolBook</title>
 </head>
 <body>
@@ -15,6 +16,11 @@
 
 <div class="contain-register">
             <?php 
+            require_once 'configuration.php'; // ajout connexion bdd 
+            $stmt = $pdo->prepare("SELECT * FROM schools");
+            $stmt->execute();
+            $allSchools = $stmt->fetchAll();
+            
                 if(isset($_GET['reg_err']))
                 {
                     $err = htmlspecialchars($_GET['reg_err']);
@@ -85,7 +91,7 @@
                     <input type="text" name="name" class="form-input" placeholder="name" required="required" autocomplete="off">
                     <input type="text" name="last_name" class="form-input" placeholder="last name" required="required" autocomplete="off">
 
-                    <input type="date" name="birth_date" class="form-input" placeholder="name" required="required" autocomplete="off">
+                    <input type="date" name="birth_date" class="form-input date" placeholder="name" required="required" autocomplete="off">
                     <!-- <input type="text" name="school_id" class="form-input" placeholder="School" required="required" autocomplete="off"> -->
                
               
@@ -97,8 +103,13 @@
                 
                     <input type="password" name="password_retype" class="form-input" placeholder="Re-tapez le mot de passe" required="required" autocomplete="off">
 
-                    <label class="form-label">Profile Picture</label>
-                    <input type="file" class="form-input" name="avatar">
+                    
+                    <select class="select-school form-input" name="choice-school">
+                        <option value="" selected>name school</option>
+                        <?php foreach($allSchools as $theSchool): ?>
+                        <option value="<?php echo $theSchool['idschools'] ?>"><?= $theSchool['name']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
 		                   
                 </div>
                 <div class="btn-register">

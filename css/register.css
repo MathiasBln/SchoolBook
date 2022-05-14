@@ -54,6 +54,16 @@ body {
     padding-left: 20px;
 }
 
+.form-input.date {
+    width: 19.8em;
+    height: 3.9em;
+    color: #534a4a;
+}
+
+.select-school.form-input {
+    width: 17.8em;
+}
+
 .form-label {
     font-size: 1.2em;
     font-weight: 700;
