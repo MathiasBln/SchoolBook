@@ -1,4 +1,6 @@
  <?php
+ // executer cette ligne dans votre terminal pour installer phpmailer elle sera dans le dossier vendor
+ //composer require phpmailer/phpmailer
  use PHPMailer\PHPMailer\PHPMailer;
  use PHPMailer\PHPMailer\SMTP;
  use PHPMailer\PHPMailer\Exception;
