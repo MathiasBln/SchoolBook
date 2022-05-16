@@ -3,7 +3,10 @@
     padding: 0;
 }
 
-
+#navbar {
+    position: fixed;
+    top: 0;
+}
 
 #logo {
     width: 6em;
@@ -23,6 +26,7 @@
     border-radius: 20px;
     text-align: center;
     margin-right: 90px;
+    margin-bottom: 2em;
 }
 #logout a {
     color: white;
