@@ -32,6 +32,7 @@
 
 #feed {
     padding-top: 115px;
+    min-height: 1000px;
 }
 
 #contacts {
@@ -169,7 +170,6 @@ ul {
     border: solid black 1px;
     height: 200px;
     width: 80%;
-    /* margin-left: 35px; */
 
 }
 
