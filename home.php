@@ -1,13 +1,17 @@
 <?php
+session_start();
+if(!isset($_SESSION['user'])){
+  header('Location:index.php');
+  die();
+}
+
 
 require('includes/pdo.php');
 
 
-$maRequete = $pdo->prepare("SELECT * FROM users WHERE iduser=3");
-$maRequete->execute();
-$maRequete->setFetchMode(PDO::FETCH_ASSOC);
+$maRequete = $pdo->prepare("SELECT * FROM users WHERE token=?");
+$maRequete->execute(array($_SESSION["user"]));
 $user = $maRequete->fetchAll();
-
 $test = $user[0]['iduser'];
 
 $contactTest = $pdo->prepare("SELECT * FROM users u, relation r WHERE r.users_iduser = :test AND r.users_iduser1 = u.iduser");
@@ -80,6 +84,7 @@ $pages = $test2->fetchAll();
   <div id="box">
     <section id="profile" class="boxes">
       <img id="pic" src=<?= $user[0]["avatar"] ?> alt="">
+
       <span id="name" ><?= $user[0]["name"] . ' ' . $user[0]["last_name"]?> </span>
       <div id="liste">
         <ul>
