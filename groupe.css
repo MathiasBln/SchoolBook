@@ -12,25 +12,25 @@ body {
     font-family: var(--body-fonts)!important;
 }
 
-header {
+.header-gpe {
     border-bottom: 1vh solid var(--neutral-dark-grayish);
     padding-bottom:1em;
 }
 
-.banner {
+.banner-gpe {
     height:20vh;
     width:100vw; 
 }
 
-.banner-image {
+.banner-image-gpe {
     height:100%;
     width: auto;
-    background-image: url(./assets/university-image-group.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-color: white;
 }
+
 
 /* profil du groupe avec 1 photo du groupe (logo) et un "j'aime" */
 
@@ -49,39 +49,6 @@ header {
 
 }
 
-/* Icone pour aimer la page */
-
-.fa-thumbs-up {
-    color: #5a189a!important;
-}
-
-.fa-thumbs-up:hover {
-    font-size:250%!important;
-}
-
-.fa-thumbs-up:active {
-    color:green!important;
-}
-
-
-.like-icon {
-    margin:1em;
-    height:5vh;
-}
-
-.like-icon h3 {
-    font-size: 100%;
-    text-align: center;
-}
-
-.inactive-like {
-    display:block;
-}
-
-.active-like {
-    display:none;
-}
-
 /* Menu de navigation issu de bootstrap */
 
 .navbar-collapse {
@@ -96,7 +63,7 @@ header {
 }
 
 
-.nav-link {
+.nav-link-gpe {
     margin: 0 0.5rem;
     border:none;
     border-radius:10px;
@@ -108,13 +75,13 @@ header {
     box-shadow: 0 0.3rem rgb(90, 24, 154,0.4);
 }
 
-.nav-link:hover {
+.nav-link-gpe:hover {
     filter:brightness(120%);
     cursor: pointer;
 }
 
 /* Indication que le clique a lieu : suppression de l'ombre sous le bouton */
-.nav-link:active {
+.nav-link-gpe:active {
     transform: translate(0 0.3rem);
     box-shadow: 0 0.1rem rgba(255,255,255,0.65);
 }
@@ -130,26 +97,26 @@ main {
 
 /* MAIN - section des exemples de pages connexes */
 
-.main-first-section {
+.main-first-section-gpe {
     display:grid;
     grid-template-rows: 1fr auto;
     justify-content:center;
 }
 
-.example-pages-container {
+.example-pages-container-pge {
     grid-row:2;
     display:flex;
     justify-content:center;
     flex-wrap: nowrap;
 }
 
-.main-first-section h2 {
+.main-first-section-gpe h2 {
     grid-row:1;
     margin-top:1em;
     margin-left:2%;
 }
 
-.example-page {
+.example-page-gpe {
     width:auto;
     height:auto;
     max-width:50vw;
@@ -160,32 +127,32 @@ main {
     margin: 2%;
 }
 
-.image-circle {
+.image-circle-gpe {
     display:flex;
 }
 
 /* Les 2 titres à côté de l'image de la page connexe */
 
-.first-page-titles {
+.first-page-titles-gpe {
     padding-top:1.1em;
 }
 
-.first-page-titles h3 {
+.first-page-titles-gpe h3 {
     font-size: medium;
     color: var(--neutral-dark-violet);
 }
 
-.first-page-titles h4 {
+.first-page-titles-gpe h4 {
     font-size: small;
     color: var(--neutral-dark-grayish);
 }
 
-.example-page-image-container {
+.example-page-image-container-gpe {
     width:auto;
     height:20vh;
 }
 
-.example-page-image {
+.example-page-image-gpe {
     height:100%;
     width: auto;
     background-image: url(./assets/university-image-group.jpg);
@@ -195,7 +162,7 @@ main {
     background-color: white;
 }
 
-.sharing-icons-container {
+.sharing-icons-container-gpe {
     background-color: rgba(255, 255, 255, 0.6);
     box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.1);
     margin:5%;
@@ -207,17 +174,17 @@ main {
 }
 
 /* Aimer ou non la 1ère page connexe */
-.first-page-heart-inactive {
+.first-page-heart-inactive-gpe {
     display:inline-block;
 }
 
-.first-page-heart-active {
+.first-page-heart-active-gpe {
     display:none;
 }
 
 /* MAIN - section de la page du groupe */
 
-.page-on-group {
+.page-on-group-gpe {
     height:auto;
     width:100vw;
 
@@ -231,7 +198,7 @@ main {
     flex-direction: column;
 }
 
-.page-on-group section:nth-of-type(1) {
+.page-on-group-gpe section:nth-of-type(1) {
     display:flex;
     flex-direction: column;
 }
@@ -244,7 +211,7 @@ main {
 .bg-image-page-on-group {
     height:100%;
     width: auto;
-    background-image: url(./assets/university-image-group.jpg);
+    background-image: url(./assets/university-image-group.jpg); 
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -256,7 +223,7 @@ main {
 /* Media queries sur la nav bar car à 1095px de large les buttons s'agrandissent sans respecter leur height initiale */
 @media screen and (max-width:1095px) {
 
-    .nav-link {
+    .nav-link-gpe {
         margin:0.2rem;
         font-size:0.8em;
     }
@@ -264,11 +231,11 @@ main {
 
 @media screen and (max-width:425px) {
 
-    .example-pages-container {
+    .example-pages-container-gpe {
         flex-wrap: wrap;
     }
 
-    .example-page {
+    .example-page-gpe {
         max-width: 100vw;
     }
 }

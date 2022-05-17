@@ -1,0 +1,23 @@
+/* Utilisation de grid pour aligner à gauche peu importe la largeur de la donnée (ne marche pas en flex) */
+.friends-gpe {
+    width:20%;
+    height:auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.friend-gpe-name {
+    grid-column:1;
+}
+
+.friend-gpe-link {
+    grid-column:2;
+}
+
+li {   
+    list-style: none;
+}
+
+a {
+    color:black;
+}
