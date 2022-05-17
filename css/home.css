@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+#box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+#categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 0px;
+    margin-right: 350px;
+}
+
+#profile {
+    position: fixed;
+    left: 10%;
+    top: 20%;
+    /* border: solid red 2px; */
+    box-shadow: 5px 5px 5px 5px lightgray;
+    height: 400px !important;
+    width: 250px;
+}
+
+#feed {
+    padding-top: 115px;
+    min-height: 1000px;
+}
+
+#contacts {
+    position: fixed;
+    right: 7%;
+    top: 20%;
+    width: 300px;
+    box-shadow: 5px 5px 5px 5px lightgray;
+    height: 625px;
+    overflow: auto;
+}
+
+.boxes {
+    box-sizing: border-box;
+    width: 30%;
+}
+
+#pic {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width : 120px; height : 120px;
+    border: none;
+    -moz-border-radius : 75px;
+    -webkit-border-radius : 75px;
+    border-radius : 75px;
+    border: solid black 1px;    
+    margin-top: 20px;
+}
+
+#name {
+    font-size: 24px;
+    color: black; 
+    display: block;
+    text-align: center;
+}
+
+#liste {
+    display: flex;
+    justify-content: center;
+}
+
+#liste img {
+    margin-right: 20px;
+    width: 40px;
+}
+
+#liste a {
+    text-decoration: none;
+    color: black;
+}
+
+ul:first-child {
+    margin-top: 30px;
+}
+ul {
+    list-style-type: none;
+}
+
+#buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+
+.button {
+    padding: 10px;
+    width: 30%;
+    border-radius: 10px;
+}
+
+#post {
+    width: 100%;
+    height: 160px;
+    box-shadow: 5px 5px 5px 5px lightgray;
+    margin-bottom: 50px;
+    top: 20%;
+
+
+}
+
+
+
+#postPicture {
+    width : 60px; height : 60px;
+    border: none;
+    -moz-border-radius : 75px;
+    -webkit-border-radius : 75px;
+    border-radius : 75px;
+    border: solid black 1px;
+    margin: 5px;
+}
+
+#textZone {
+    height: 30%;
+    width: 80%;
+    margin: 5px;
+    border-style: none;
+}
+
+#hr {
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+#submit {
+    display: flex;
+    justify-content: space-around;
+}
+
+#contact, #headerPost{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin-top: 15px;
+}
+#friends {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 20px;
+}
+
+#publication {
+    box-shadow: 5px 5px 5px 5px lightgray;
+
+}
+
+#publicationImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid black 1px;
+    height: 200px;
+    width: 80%;
+
+}
+
+
+#Contact {
+    display: none;
+}

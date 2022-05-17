@@ -1,5 +1,5 @@
 <?php
-require "addData.php"
+require_once 'addData.php';
 
 ?>
 

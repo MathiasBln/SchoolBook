@@ -1,0 +1,147 @@
+@import url('http://fonts.cdnfonts.com/css/amiri');
+@import url('https://css.gg/arrow-right.css');
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Amiri', sans-serif;
+}
+
+.contain-register {
+    width: 100%;
+    display: grid;
+    /* grid-template-columns: 1fr 1fr; */
+    justify-items: center;
+    padding-top: 63px;
+    background-attachment: fixed;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../images/background-form\ \(2\).jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(15px);
+    height: auto;
+}
+
+.register-form {
+    border-radius: 25px;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 35px 68px 0 rgb(170 63 254 / 15%), inset 0 -8px 16px 0 #d6a2ff57;
+    width: 287px;
+    display: grid;
+    justify-items: center;
+    height: 42em;
+}
+
+.text-register h2 {
+    text-align: center;
+    font-size: 1.6em;
+}
+
+.text-register {
+    display: inline-table;
+}
+
+.form-input {
+    width: 16em;
+    height: 3em;
+    border-radius: 7px;
+    border: none;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.3);
+    border-left: 5px solid #efa2ff;
+    box-shadow: 1px 2px 1px #b1c5d4;
+    outline: none;
+    font-size: .88em;
+    padding-left: 20px;
+}
+
+.form-input.date {
+    width: 19.8em;
+    height: 3.9em;
+    color: #534a4a;
+}
+
+.select-school.form-input {
+    width: 17.8em;
+}
+
+.form-label {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.inputs-register {
+    display: grid;
+    align-content: stretch;
+    padding-bottom: 35px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.form-input:focus {
+    border: none;
+}
+
+.btn-register button {
+    border-radius: 7px;
+    border: none;
+    backdrop-filter: blur(15px);
+    background: #efa2ff;
+    box-shadow: 0 4px 8px 0 #dda5eede, inset 0 -8px 16px 0 #b36bbf;
+    width: 16em;
+    height: 3em;
+    font-size: 1em;
+    font-weight: 700;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+.btn-register button:hover {
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 8px 0 rgba(63, 254, 209, 0.1), inset 0 -8px 16px 0 #a2ffefa1;
+}
+
+.box {
+    border-radius: 25px;
+    backdrop-filter: blur(15px);
+    background-image: url("../images/student-pc.jpg");
+    box-shadow: 0 35px 68px 0 rgb(191 188 193 / 15%), inset 0 -8px 16px 0 #00000057;
+    width: 250px;
+    display: grid;
+    justify-items: center;
+    height: 25em;
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: end;
+}
+
+.btn-box {
+    border-radius: 32px;
+    border: none;
+    backdrop-filter: blur(15px);
+    background: #efa2ff;
+    box-shadow: 0 4px 8px 0 #dda5eede, inset 0 -8px 16px 0 #b36bbf;
+    width: 3em;
+    height: 3em;
+    font-size: 1em;
+    font-weight: 700;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+.text-box {
+    background: aliceblue;
+    height: 11em;
+    width: 15.7em;
+    border-radius: 25px;
+    display: grid;
+    justify-items: center;
+}
+
+.text-box p {
+    margin-top: -38px;
+    text-align: center;
+}
