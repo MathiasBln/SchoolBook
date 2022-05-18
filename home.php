@@ -145,14 +145,12 @@ $pages = $maRequetePages->fetchAll();
                 <div id="publication"> 
                   <p><?= $contact["first_name"] . ' ' . $contact["last_name"] ?></p>
                   <p id="friends"><?= $result["content"] ?></p> 
-                  <p><?= $page["title"] ?></p>
                   <p id="date"><?= $result["date_publish"] ?></p> 
                 </div>
               <?php }else { ?>
                 <div id="publication"> 
                   <p><?= $contact["first_name"] . ' ' . $contact["last_name"] ?></p>
                   <p id="friends"><?= $result["content"] ?></p> 
-                  <p><?= $page["title"] ?></p>
                   <img id="publicationImage" src= <?= $result["image"] ?>>
                   <p id="date"><?= $result["date_publish"] ?></p> 
                 </div>
