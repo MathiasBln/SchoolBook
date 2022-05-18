@@ -24,7 +24,7 @@
             </li>
             <li class="nav-item"> 
                 <div id="logout">
-                    <a class="nav-link" href="http://localhost/SchoolBook/logout.php">Logout</a>
+                    <a class="nav-link" href="logout.php">Logout</a>
 
                 </div>
             </li>
