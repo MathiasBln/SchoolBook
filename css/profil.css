@@ -1,20 +1,52 @@
-#profil_content{height: 500px;
+#whole_content{
     width: 100%;
-    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+
+#banner{
+    height: 200px;
+    width: 70%;
+    background-color: gray;
+    
+    
+}
+
 
 #profile_pic{
     height: 200px;
     width: 200px;
     border-radius: 50%;
+    grid-column: 2;
+    grid-row: 2;
+    position: absolute;
+    left : 25%;
+    top : 100px;
 }
 
-#posts{
+#profile_content{
+    width: 70%;
     height: fit-content;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-gap: 50px;
     
 }
 
 .post{
     margin-top: 25px;
     margin-bottom: 25px;
+    box-shadow: 5px 5px 5px 5px lightgray;
 }
+#postPicture {
+    width : 60px; height : 60px;
+    border-radius : 50%;
+    margin: 5px;
+}
+#groups p{margin-left: 10px;}
+#friends p{margin-left: 10px;}
+
+
