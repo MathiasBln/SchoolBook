@@ -21,10 +21,16 @@ require('./includes/requests_homegpe.php');
 <!-- <?php require('./partials/navigation_gpe.php'); ?> -->
 
 <main>
-    <section>
-        <h1>Un petit mot avant de se quitter...</h1>
+    <section class="container container-gpe">
 
-        <p>Nous vous remercions pour l'intérêt porté à ce groupe, vous pouvez revenir à l'accueil en cliquant sur Home dans le menu</p>
+            <div class="card mt-5" style="width: 50vw;">
+                <img src="assets/1-logo.svg" class="card-img-top" style="height:10vh; width:100%;" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Un petit mot avant de se quitter...</h5>
+                    <p class="card-text">Nous vous remercions pour l'intérêt porté à ce groupe.</p>
+                    <a href="./home.php" class="btn btn-primary">Revenir à l'accueil</a>
+                </div>
+            </div>
 
     </section>
 </main>

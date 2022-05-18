@@ -26,10 +26,10 @@ require('./includes/requests_homegpe.php');
         <?php for($row = 0; $row < count($myFriendsGpe); $row++):?>
         <div class="friends-gpe">
             <li class="friend-gpe-name"><?= $myFriendsGpe[$row]["first_name"]." ".$myFriendsGpe[$row]["last_name"]?></li>
-            <?php if(in_array($myFriendsGpe[$row]["id_receveur"], $alreadyUser) && in_array($idgpe, $alreadyGpe) ):?>
+            <?php if(in_array($myFriendsGpe[$row]["id_receveur"], $alreadyUser) && in_array($id_gpe, $alreadyGpe) ):?>
                 <li class="friend-gpe-link">Je suis déjà dans ce groupe</li>
             <?php else: ?>
-                <li class="friend-gpe-link"><a href="./group_invitation.php?idMemberAdded=<?=$myFriendsGpe[$row]["id_receveur"]?>&idgroup=<?= $idgpe?>">invitez ce membre</a></li>
+                <li class="friend-gpe-link"><a href="./group_invitation.php?idMemberAdded=<?=$myFriendsGpe[$row]["id_receveur"]?>&idgroup=<?= $id_gpe?>">invitez ce membre</a></li>
             <?php endif; ?>
         </div>
         <?php endfor; ?>

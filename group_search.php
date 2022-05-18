@@ -35,16 +35,18 @@ var_dump($myGroups[5]["idgroups"]." ".$myGroups[5]["name"]);
 </head>
 <body>
     <?php require('./partials/header.php'); ?>
-    <?php require('./partials/navigation_gpe.php'); ?>
 
 <article class="container-gpe mt-5">
+<!-- shadow p-3 mb-5 bg-body rounded -->
+<div class="card mb-3 shadow bg-body rounded mt-5" style="max-width: 100vw;">
+  <div class="row g-0 p-x-0 m-x-0">
 
-<div class="card mb-3 shadow p-3 mb-5 bg-body rounded" style="max-width: 100vw;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="assets/people_tree.jpg" class="img-fluid rounded-start" alt="...">
+    <div class="col-4 picture-container">
+      <img src="assets/people_tree.jpg" class="img-tree img-fluid rounded-start" style="height:100%; width:auto;" alt="...">
     </div>
-    <div class="col-md-8">
+
+    <div class="col-8">
+
       <div class="card-body">
         <h5 class="card-title">Groupes disponibles:</h5>
         <ul class="list-group list-group-flush">
@@ -53,7 +55,7 @@ var_dump($myGroups[5]["idgroups"]." ".$myGroups[5]["name"]);
             <a class="list-group-item list-group-item-action text-decoration-none" href="group_presentation.php?id_gpe=<?= $myGroups[$i]["idgroups"] ?>"><?= $myGroups[$i]["name"] ?> </a>
         </li>
         <?php endfor; ?>
-        </ul> 
+        </ul>  
       </div>
     </div>
   </div>
@@ -61,33 +63,7 @@ var_dump($myGroups[5]["idgroups"]." ".$myGroups[5]["name"]);
 
         </article>
 
-
-
-
-
-    <!-- <table>
-        <thead>
-            <tr>
-                <th>valeur de i</th>
-                <th>Identifiant du groupe</th>
-                <th>Nom du groupe</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php for($i = 0; $i < count($myGroups); $i++): ?>
-                <tr>
-                    <td><?= $i ?></td>
-                    <td><?= $myGroups[$i]["idgroups"] ?></td>
-                    <td>
-                        <a href="group.php?id_gpe=<?= $myGroups[$i]["idgroups"] ?>"> 
-                        <?= $myGroups[$i]["name"] ?> </a>
-                    </td>
-                </tr>
-            <?php endfor; ?>
-        </tbody>
-    </table> -->
-
-
+</article>
 
 </body>
 </html>

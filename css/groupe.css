@@ -58,21 +58,9 @@ body {
     font-weight: 800;
 }
 
-
-.nav-link-gpe {
-    margin: 0 0.5rem;
-    border:none;
-    border-radius:10px;
-    color:#fff!important;
-    font-weight: bold;
-    background:#5a189a;
-    outline:none;
-    padding:0.5rem 1rem!important;
-    box-shadow: 0 0.3rem rgb(90, 24, 154,0.4);
-}
-
 .nav-link-gpe:hover {
     filter:brightness(120%);
+    color:#5a189a!important;
     cursor: pointer;
 }
 
@@ -107,10 +95,27 @@ main {
 }
 
 /* Media queries sur la nav bar car à 1095px de large les buttons s'agrandissent sans respecter leur height initiale */
-@media screen and (max-width:1095px) {
+@media screen and (max-width:1400px) {
 
-    .nav-link-gpe {
-        margin:0.2rem;
-        font-size:0.8em;
+
+    
+}
+
+@media screen and (max-width:768px) {
+
+    .col-8 {
+        width:unset!important;
+    }
+
+    .picture-container {
+        display:none;
+    }
+
+    .img-tree {
+        display:none;
+    }
+
+    .banner-gpe {
+        display:none;
     }
 }

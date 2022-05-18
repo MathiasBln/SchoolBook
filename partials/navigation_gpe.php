@@ -8,7 +8,7 @@ require('./includes/requests_homegpe.php');
             <div class="banner-image-gpe" style="background-image:url(./assets/<?=$groups[0]["idgroups"]?>-group.jpg)"></div>     
         </section>
 
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-xl navbar-light">
         <div class="container">
             <section class="group-profil">
                 <div class="image-circle">
@@ -24,8 +24,8 @@ require('./includes/requests_homegpe.php');
                     <a class="nav-link nav-link-gpe" href="./group_presentation.php">A propos</a>
                     <a class="nav-link nav-link-gpe" href="./group.php">Sujets</a>
                     <a class="nav-link nav-link-gpe" href="./group_invitation.php">Invitez vos amis</a>
-                    <a class="nav-link nav-link-gpe" href="./group_members.php?idgpe=<?= $groups[0]["idgroups"]?>">Membres du groupe</a>
-                    <a class="nav-link nav-link-gpe" href="./group_quit.php?idgpe=<?= $groups[0]["idgroups"]?>&idUserFromGpe=">Nous quitter</a>
+                    <a class="nav-link nav-link-gpe" href="./group_members.php?id_gpe=<?= $groups[0]["idgroups"]?>">Membres du groupe</a>
+                    <a class="nav-link nav-link-gpe" href="./group_quit.php?id_gpe=<?= $groups[0]["idgroups"]?>&idUserFromGpe=0">Nous quitter</a>
                 </div>
             </div>
         </div>

@@ -1,6 +1,31 @@
 <?php
 require('./includes/pdo.php');
 require('./includes/requests_homegpe.php');
+
+if($gpe_id) {
+    // Problème avec la vérif pour savoir si le post est bien celui d'un utilisateur du groupe : nom de colonne identique dans post/group_has_users
+    $gpe_id = 7;
+    // Ici on ne sort donc que les postes écrit pas les utilisateurs du groupe sur lequel on est :
+    $myRequestPostGpe = $pdo->prepare("SELECT content, image, date_publish, users_iduser, groups_idgroups FROM posts
+                                       WHERE posts.groups_idgroups = :gpe_id;");
+    $myRequestPostGpe->execute([
+        ":gpe_id" => $gpe_id
+    ]);
+
+    $myRequestPostGpe->setFetchMode(PDO::FETCH_ASSOC);
+    $postGpe = $myRequestPostGpe->fetchAll();
+
+    $myRequestUserPost = $pdo->prepare("SELECT users_iduser, groups_idgroups, iduser, first_name, last_name FROM posts, users
+    WHERE posts.users_iduser = iduser AND posts.groups_idgroups = 7");
+
+// +--------------+-----------------+--------+------------+-----------+
+// | users_iduser | groups_idgroups | iduser | first_name | last_name |
+// +--------------+-----------------+--------+------------+-----------+
+// |            8 |               7 |      8 | Leatha     | Kulas     |
+// |            5 |               7 |      5 | Aida       | Gorczany  |
+// +--------------+-----------------+--------+------------+-----------+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -9,6 +34,7 @@ require('./includes/requests_homegpe.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  href="css/profil.css" rel="stylesheet">
     <link rel="stylesheet" href="css/groupe.css" type="text/css">
     <link rel="stylesheet" href="css/footer.css" type="text/css">
     <link rel="stylesheet" href="css/header.css" type="text/css">
@@ -25,51 +51,20 @@ require('./includes/requests_homegpe.php');
     <main>
   
         <section class="main-first-section-gpe container">
-            <h2>Nos pages: </h2>
-        <section class="example-pages-container-gpe">
+            <h2>Postes des membres: </h2>
 
-        <article class="example-page-gpe">
-        <div class="image-circle-gpe">
-            <img src="./assets/group-logo.svg" class="rounded-circle" alt="logo de la page connexe">
-            <div class="first-page-titles-gpe">
-            <h3>Post n°</h3>
-            <h4></h4>
+            <div id="profile_content">              
+            <div>
+                <?php foreach($postGpe as $postGpe){ ?>
+                <div class="post">
+                    <h2>Post de ....></h2>
+                    <p> <?= $postGpe["content"]; ?> </p>
+                    <p> <?= $postGpe["date_publish"]; }; ?> </p>
+                    <img src=<?= $postGpe["image"]; ?> alt="image_du_post">
+                </div>
             </div>
         </div>
-        <p></p>
-        <div class="example-page-image-container-gpe">
-            <div class="example-page-image-gpe"></div>
-        </div>
-        <div class="sharing-icons-container-gpe">
-            <img src="./assets/favorite_FILL0.svg" alt="Like" class="first-page-heart-inactive-gpe">
-            <img src="./assets/favorite_FILL1.svg" alt="Like" class="first-page-heart-active-gpe">
-            <img src="./assets/chat_bubble.svg" alt="Comment">
-            <img src="./assets/share.svg" alt="Share">
-        </div>
-        </article>
-
-        <article class="example-page-gpe">
-        <div class="image-circle-gpe">
-            <img src="./assets/group-logo.svg" class="rounded-circle" alt="logo de la page connexe">
-            <div class="first-page-titles-gpe">
-            <h3></h3>
-            <h4></h4>
-            </div>
-        </div>
-        <p></p>
-        <div class="example-page-image-container-gpe">
-            <div class="example-page-image-gpe"></div>
-        </div>
-        <div class="sharing-icons-container-gpe">
-            <img src="./assets/favorite_FILL0.svg" alt="Like" class="first-page-heart-inactive-gpe">
-            <img src="./assets/favorite_FILL1.svg" alt="Like" class="first-page-heart-active-gpe">
-            <img src="./assets/chat_bubble.svg" alt="Comment">
-            <img src="./assets/share.svg" alt="Share">
-        </div>
-        </article>
-
-        </section>
-    </section>
+        
 </main>
 
 <?php require('partials/footer.php'); ?>
