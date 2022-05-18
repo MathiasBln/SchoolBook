@@ -5,9 +5,7 @@ if(!isset($_SESSION['user'])){
   die();
 }
 
-
 require('includes/pdo.php');
-
 
 $maRequete = $pdo->prepare("SELECT * FROM users WHERE token=?");
 $maRequete->execute(array($_SESSION["user"]));
