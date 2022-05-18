@@ -32,7 +32,7 @@
                     // On créer la session et on redirige sur dashboard.php
                     $_SESSION['user'] = $data['token'];
                     $_SESSION['avatar'] = $data['avatar'];
-                    header('Location: dashboard.php');
+                    header('Location: home.php');
                     die();
                 }else{ header('Location: index.php?login_err=password'); die(); }
             }else{ header('Location: index.php?login_err=email'); die(); }
