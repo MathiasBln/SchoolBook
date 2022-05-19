@@ -1,13 +1,10 @@
 <?php 
-    require_once 'configuration.php'; // On inclu la connexion à la bdd
+    require_once 'configuration.php'; // On inclut la connexion à la bdd
 
     // Si les variables existent et qu'elles ne sont pas vides
+    
     if(!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['password_retype']))
     {
-        
-
-       
-
 
         // Patch XSS
         $name = htmlspecialchars($_POST['name']);
@@ -23,7 +20,7 @@
        
        
         // On vérifie si l'utilisateur existe
-        $check = $pdo->prepare('SELECT name, last_name, birth_date, email, password, avatar, schools_id FROM users WHERE email = ?');
+        $check = $pdo->prepare('SELECT username, last_name, birth_date, email, password, avatar, banner, schools_id FROM users WHERE email = ?');
         $check->execute(array($email));
         $data = $check->fetch();
         $row = $check->rowCount();
@@ -54,7 +51,10 @@
                             $ip = $_SERVER['REMOTE_ADDR']; 
                            
                             // On insère dans la base de données
-                            $insert = $pdo->prepare('INSERT INTO users(name,last_name, birth_date, email, password, ip, token, schools_id) VALUES(:name, :last_name, :birth_date, :email, :password, :ip, :token, :schools)');
+                            $user_image = rand(1,12);
+                            $user_banner = rand(1,9);
+
+                            $insert = $pdo->prepare('INSERT INTO users(username,last_name, birth_date, email, password, ip, token, avatar, banner, schools_id) VALUES(:name, :last_name, :birth_date, :email, :password, :ip, :token, :user_image, :user_banner, :schools)');
                             $insert->execute(array(
                                 'name' => $name,
                                 'last_name' => $last_name,
@@ -63,6 +63,8 @@
                                 'password' => $password,
                                 'ip' => $ip,
                                 'token' => bin2hex(openssl_random_pseudo_bytes(64)),
+                                'user_image' => $user_image.'.png',
+                                'user_banner' => $user_banner.'.png',
                                 'schools' => $school
 
                             ));

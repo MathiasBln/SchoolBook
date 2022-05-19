@@ -42,17 +42,17 @@
                     "token" => $_SESSION['user']
                 ));
                 // On redirige
-                header('Location: dashboard.php?err=success_password');
+                header('Location: profile.php?err=success_password');
                 die();
             }
         }
         else{
-            header('Location: dashboard.php?err=current_password');
+            header('Location: profile.php?err=current_password');
             die();
         }
 
     }
     else{
-        header('Location: dashboard.php');
+        header('Location: profile.php');
         die();
     }
