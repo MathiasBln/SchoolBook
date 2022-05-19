@@ -1,38 +1,42 @@
 <?php
+session_start();
+if(!isset($_SESSION['user'])){
+  header('Location:index.php');
+  die();
+}
+
 
 require('includes/pdo.php');
 
 
-$maRequete = $pdo->prepare("SELECT * FROM users WHERE iduser=3");
-$maRequete->execute();
-$maRequete->setFetchMode(PDO::FETCH_ASSOC);
-$user = $maRequete->fetchAll();
+$maRequeteUsers = $pdo->prepare("SELECT * FROM users WHERE token=?");
+$maRequeteUsers->execute(array($_SESSION["user"]));
+$user = $maRequeteUsers->fetchAll();
+$saveUser = $user[0]['iduser'];
 
-$test = $user[0]['iduser'];
-
-$contactTest = $pdo->prepare("SELECT * FROM users u, relation r WHERE r.users_iduser = :test AND r.users_iduser1 = u.iduser");
-$contactTest->execute([
-  ":test" => $test
+$maRequeteContact = $pdo->prepare("SELECT * FROM users u, relation r WHERE r.users_iduser = :saveUser AND r.users_iduser1 = u.iduser");
+$maRequeteContact->execute([
+  ":saveUser" => $saveUser
 ]);
-$contactTest->setFetchMode(PDO::FETCH_ASSOC);
-$contacts = $contactTest->fetchAll();
+$maRequeteContact->setFetchMode(PDO::FETCH_ASSOC);
+$contacts = $maRequeteContact->fetchAll();
 
-$post = $pdo->prepare("SELECT * FROM users_has_pages uhp WHERE uhp.users_iduser = :test");
-$post->execute([
-  ":test" => $test
+$maRequetePostByPages = $pdo->prepare("SELECT * FROM users_has_pages uhp WHERE uhp.users_iduser = :saveUser");
+$maRequetePostByPages->execute([
+  ":saveUser" => $saveUser
 ]);
-$post->setFetchMode(PDO::FETCH_ASSOC);
-$publications = $post->fetchAll();
+$maRequetePostByPages->setFetchMode(PDO::FETCH_ASSOC);
+$publications = $maRequetePostByPages->fetchAll();
 
-$test1 = $pdo->prepare("SELECT * FROM posts p");
-$test1->execute();
-$test1->setFetchMode(PDO::FETCH_ASSOC);
-$results = $test1->fetchAll();
+$maRequetePost = $pdo->prepare("SELECT * FROM posts p ORDER BY date_publish DESC");
+$maRequetePost->execute();
+$maRequetePost->setFetchMode(PDO::FETCH_ASSOC);
+$results = $maRequetePost->fetchAll();
 
-$test2 = $pdo->prepare("SELECT * FROM pages p");
-$test2->execute();
-$test2->setFetchMode(PDO::FETCH_ASSOC);
-$pages = $test2->fetchAll();
+$maRequetePages = $pdo->prepare("SELECT * FROM pages p");
+$maRequetePages->execute();
+$maRequetePages->setFetchMode(PDO::FETCH_ASSOC);
+$pages = $maRequetePages->fetchAll();
 
 
 
@@ -75,96 +79,102 @@ $pages = $test2->fetchAll();
 
 </head>
 <body>
-<?php require_once('partials/header.php') ?>
+  <?php require_once('partials/header.php') ?>
 
   <div id="box">
+
     <section id="profile" class="boxes">
       <img id="pic" src=<?= $user[0]["avatar"] ?> alt="">
-      <span id="name" ><?= $user[0]["name"] . ' ' . $user[0]["last_name"]?> </span>
+      <span id="name" ><?= $user[0]["first_name"] . ' ' . $user[0]["last_name"]?> </span>
       <div id="liste">
         <ul>
-          <li><img class="svg" src="svg/user.svg" alt="">
-          <a href="#">My Profil</a></li>
+          <li><img class="svg" src="svg/user.svg" alt=""><a href="#">My Profil</a></li>
           <li> <img class="svg" src="svg/users.svg" alt=""><a href="#">My Groups</a></li>
           <li> <img class="svg"  src="svg/book-open.svg" alt=""> <a href="#">My Pages</a></li>
           <li> <img class="svg"  src="svg/message-circle.svg" alt=""><a href="#">My Discussions</a></li>
         </ul>
       </div>
-    
     </section>
 
     <section id="feed" class="boxes">
-      <div id="post">
-        <img id="postPicture" src=<?= $user[0]["avatar"] ?> alt="">
-        <input id="textZone" name="Post" type="text"
-        placeholder="Write something there..">
-        <img id="hr" src="svg/hr.svg" alt="">
-        <br>
-        <div id="submit">
-          <button name="Pictures">Pictures</button>
-
-          <button type="submit">Post</button>
-        </div>
-
-        
-      </div>
+      <?php require('postsProfil.php')?>
 
       <div id="buttons">
         <button class="button" id="buttonPages">Pages</button>
-
         <button class="button" id="buttonContact">Contact</button>
       </div>
-          <div id="Pages">
-          <?php foreach ($results as $result):
-              foreach ($pages as $page):
-                foreach ($publications as $publication):
-                  if ($publication["pages_idpages"] == $result["pages_idpages"] && $publication["pages_idpages"] == $page["idpages"]){ ?>
-            <div id="publication"> 
-              <p id="friends"><?= $result["content"] ?></p> 
-              <p><?= $page["title"] ?></p>
-              <img id="publicationImage" src= <?= $result["image"] ?>>
-              <p id="date"><?= $result["date_publish"] ?></p> 
-            </div>
-        <?php   }
+
+      <div id="Pages">
+        <?php foreach ($results as $result):
+          foreach ($pages as $page):
+            foreach ($publications as $publication):
+              if ($publication["pages_idpages"] == $result["pages_idpages"] && $publication["pages_idpages"] == $page["idpages"]){ ?>
+                <div id="publication"> 
+                  <p id="friends"><?= $result["content"] ?></p> 
+                  <p><?= $page["title"] ?></p>
+                  <img id="publicationImage" src= "upload/<?= $result["image"] ?>">
+                  <p id="date"><?= $result["date_publish"] ?></p> 
+                </div>
+              <?php }
+            endforeach;
           endforeach;
-        endforeach;
-      endforeach; 
-      ?>
+        endforeach; ?>
           </div>
       
       <div id="Contact">
-      <?php foreach ($results as $result):
-              foreach ($contacts as $contact):
-                  if ($result["users_iduser"] == $contact["iduser"] && $result["pages_idpages"] == NULL && $result["groups_idgroups"] == NULL){ ?>
-            <div id="publication"> 
-              <p><?= $contact["name"] . ' ' . $contact["last_name"] ?></p>
-              <p id="friends"><?= $result["content"] ?></p> 
-              <p><?= $page["title"] ?></p>
-              <img id="publicationImage" src= <?= $result["image"] ?>>
-              <p id="date"><?= $result["date_publish"] ?></p> 
-            </div>
-        <?php   }
-        endforeach;
-      endforeach; 
+        <?php foreach ($results as $result):
+          if ($result["users_iduser"] == $saveUser && $result["pages_idpages"] == NULL && $result["groups_idgroups"] == NULL){
+            if($result["image"] == NULL){ ?>
+              <div id="publication"> 
+                <p><?= $user[0]["first_name"] . ' ' . $user[0]["last_name"] ?></p>
+                <p id="friends"><?= $result["content"] ?></p> 
+                <p id="date"><?= $result["date_publish"] ?></p>           
+              </div>
+            <?php }else { ?>
+              <div id="publication"> 
+                <p><?= $user[0]["first_name"] . ' ' . $user[0]["last_name"] ?></p>
+                <p id="friends"><?= $result["content"] ?></p> 
+                <img id="publicationImage" src= "upload/<?= $result["image"] ?>">
+                <p id="date"><?= $result["date_publish"] ?></p>           
+              </div>
+            <?php } ?>
+          <?php   }
+          foreach ($contacts as $contact):
+            if ($result["users_iduser"] == $contact["iduser"] && $result["pages_idpages"] == NULL && $result["groups_idgroups"] == NULL){ 
+              if($result["image"] == NULL){ ?>
+                <div id="publication"> 
+                  <p><?= $contact["first_name"] . ' ' . $contact["last_name"] ?></p>
+                  <p id="friends"><?= $result["content"] ?></p> 
+                  <p id="date"><?= $result["date_publish"] ?></p> 
+                </div>
+              <?php }else { ?>
+                <div id="publication"> 
+                  <p><?= $contact["first_name"] . ' ' . $contact["last_name"] ?></p>
+                  <p id="friends"><?= $result["content"] ?></p> 
+                  <img id="publicationImage" src= <?= $result["image"] ?>>
+                  <p id="date"><?= $result["date_publish"] ?></p> 
+                </div>
+              <?php } ?>
+            <?php  }
+          endforeach;
+        endforeach; 
       ?>
       </div>
-      
-      
     </section>
     
     <section id="contacts" class="boxes">
       <?php foreach($contacts as $contact): ?>
-      <div id="contact"> 
-        <img id="postPicture" src= <?= $contact["avatar"] ?>>
-        <p id="friends"><?= $contact["name"] . ' ' . $contact["last_name"] ?></p> 
-      </div>
-        <?php endforeach; ?>
-
+        <div id="contact"> 
+          <img id="postPicture" src= <?= $contact["avatar"] ?>>
+          <p id="friends"><?= $contact["first_name"] . ' ' . $contact["last_name"] ?></p> 
+        </div>
+      <?php endforeach; ?>
     </section>
+
   </div>
 
-<?php require('partials/footer.php') ?>
+  <?php require('partials/footer.php') ?>
 
-        <script src="buttons.js"></script>
+  <script src="buttons.js"></script>
 </body>
 </html>
