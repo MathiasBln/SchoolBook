@@ -10,7 +10,8 @@
 ?>
 
 <!-- ---------------------------------------------------------- -->
-<?php session_start() ?>
+<?php require 'includes/init.php';
+ ?>
 
 <!doctype html>
 <html lang="en">
@@ -52,7 +53,7 @@
         require_once 'configuration.php'; // On inclut la connexion à la base de données
 
         $email = $_POST["email"];
-        $mysqli = mysqli_connect('localhost', 'root', 'root', 'db_schoolbook');
+        $mysqli = mysqli_connect('localhost', 'root', '', 'db_schoolbook');
         $sql = mysqli_query($mysqli, "SELECT * FROM users WHERE email='$email'");
         
         $query = mysqli_num_rows($sql);
@@ -105,13 +106,14 @@
             // HTML body
             $mail->isHTML(true);
             $mail->Subject="Recover your password";
-            $mail->Body="<b>Dear User</b>
+            $mail->Body='<b>Hello,</b>
             <h3>We received a request to reset your password.</h3>
             <p>Kindly click the below link to reset your password</p>
-            http://localhost/schoolbook/reset_psw.php
+            <a href="http://localhost/schoolbook/reset_psw.php">click to reset your password </a>
             <br><br>
-            <p>With regrads,</p>
-            <b>SchoolBook</b>";
+            <p>Cordially,</p>
+            <p>the whole schoolbook team</p>
+            <b>SCHOOLBOOK</b>';
 
             if(!$mail->send()){
                 ?>
@@ -123,6 +125,7 @@
                 ?>
                     <script>
                         window.location.replace("index.php");
+                        alert("<?php echo "Check your mail you have received the link"?>");
                     </script>
                 <?php
             }

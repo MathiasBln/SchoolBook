@@ -1,3 +1,15 @@
+<?php
+require 'includes/init.php';
+// IF USER MAKING LOGIN REQUEST
+if(isset($_POST['email']) && isset($_POST['password'])){
+  $result = $user_obj->loginUser($_POST['email'],$_POST['password']);
+}
+// IF USER ALREADY LOGGED IN
+if(isset($_SESSION['email'])){
+  header('Location: profile.php');
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,18 +70,18 @@
             </div>
         </form>
 
-        <form action="login.php" method="post" class="form2">
+        <form action="" method="post" class="form2">
             <div class="text-log">
             <h2>Hello again</h2>
             <p>I'm happy to see you again !</p>
             </div>
             
             <div class="inputs">
-            <input type="email" class="form-input" placeholder="| Email" name="email" required="required" autocomplete="off">
-            <input type="password" class="form-input" placeholder="| Password" name="password" required="required" autocomplete="off">
+            <input type="email" class="form-input" id="email" placeholder="| Email" name="email" required="required" autocomplete="off">
+            <input type="password" class="form-input" id="password" placeholder="| Password" name="password" required="required" autocomplete="off">
             <a href="forgot_password.php">forget password?</a>
             </div>
-            <button type="submit" class="btn-login">Sign In</button>
+            <input type="submit" class="btn-login" value="Sign In"/>
         </form>
         
 

@@ -1,6 +1,8 @@
-<?php session_start() ;
-/* include('configuration.php'); */
-require_once 'configuration.php'; // On inclut la connexion à la base de données
+<?php
+
+require 'includes/init.php';
+ // On inclut la connexion à la base de données
+
 
 ?>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -19,7 +21,7 @@ require_once 'configuration.php'; // On inclut la connexion à la base de donné
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style-index.css">
 
     <link rel="icon" href="Favicon.png">
 
@@ -31,49 +33,28 @@ require_once 'configuration.php'; // On inclut la connexion à la base de donné
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
-    <div class="container">
-        <a class="navbar-brand" href="#">Password Reset Form</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</nav>
+    <div class="login-form">
 
-<main class="login-form">
-    <div class="cotainer">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Reset Your Password</div>
-                    <div class="card-body">
-                        <form action="#" method="POST" name="login">
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">New Password</label>
-                                <div class="col-md-6">
-                                    <input type="password" id="password" class="form-control" name="password" required autofocus>
-                                    <i class="bi bi-eye-slash" id="togglePassword"></i>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 offset-md-4">
-                                <input type="submit" value="Reset" name="reset">
-                            </div>
-                    </div>
-                    </form>
-                </div>
+        <form action="#" method="POST" name="login" class="form2">
+            <div class="text-log">
+            <h2>Reset password</h2>
+            <p>Enter your new password.</p>
             </div>
-        </div>
-    </div>
+
+            <div class="inputs">
+                <input type="password" class="form-input" placeholder=" |Enter your new password..." id="password" name="password" required autofocus>
+                <i class="bi bi-eye-slash" id="togglePassword"></i>
+            </div>
+            <input type="submit" class="btn-login" value="Reset" name="reset">
+
+        </form>
     </div>
 
-</main>
 </body>
 </html>
 <?php
     if(isset($_POST["reset"])){
-        //include('configuration.php');
+
     require_once 'configuration.php'; // On inclut la connexion à la base de données
 
         $psw = $_POST["password"];
@@ -82,7 +63,7 @@ require_once 'configuration.php'; // On inclut la connexion à la base de donné
         $Email = $_SESSION['email'];
 
         $hash = password_hash( $psw , PASSWORD_DEFAULT );
-        $mysqli = mysqli_connect('localhost', 'root', 'root', 'db_schoolbook');
+        $mysqli = mysqli_connect('localhost', 'root', '', 'db_schoolbook');
         $sql = mysqli_query($mysqli, "SELECT * FROM users WHERE email='$Email'");
         $query = mysqli_num_rows($sql);
   	    $fetch = mysqli_fetch_assoc($sql);
