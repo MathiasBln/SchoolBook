@@ -109,7 +109,7 @@ $subs = $maRequete4->fetchAll();
                             {echo ("avatar/no_avatar.png");
                             } else{echo($sub["avatar"]);} ?> 
                                                                 alt="image_page_sub"> 
-                    <a href="old_profil.php?id=<?= $subs["iduser"] ?>"><?= $sub["first_name"] . ' ' . $sub["last_name"]; }; ?> </a>
+                    <a href="old_profil.php?id=<?= $sub["iduser"] ?>"><?= $sub["first_name"] . ' ' . $sub["last_name"]; }; ?> </a>
                 </p>
             </div>            
             </div>
