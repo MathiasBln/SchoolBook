@@ -17,14 +17,14 @@
                 <a class="nav-link" href="#">Groups</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pages</a>
+                <a class="nav-link" href="http://localhost/SchoolBook/pages.php">Pages</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Discussions</a>
             </li>
             <li class="nav-item"> 
                 <div id="logout">
-                    <a class="nav-link" href="http://localhost/SchoolBook/logout.php">Logout</a>
+                    <a class="nav-link" href="logout.php">Logout</a>
 
                 </div>
             </li>
