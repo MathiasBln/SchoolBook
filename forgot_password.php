@@ -10,7 +10,8 @@
 ?>
 
 <!-- ---------------------------------------------------------- -->
-<?php session_start() ?>
+<?php require 'includes/init.php';
+ ?>
 
 <!doctype html>
 <html lang="en">

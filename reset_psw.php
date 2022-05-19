@@ -1,5 +1,8 @@
 <?php
+
 require 'includes/init.php';
+ // On inclut la connexion à la base de données
+
 
 ?>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -51,6 +54,7 @@ require 'includes/init.php';
 </html>
 <?php
     if(isset($_POST["reset"])){
+
     require_once 'configuration.php'; // On inclut la connexion à la base de données
 
         $psw = $_POST["password"];
