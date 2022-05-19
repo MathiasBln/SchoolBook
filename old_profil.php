@@ -1,6 +1,5 @@
 <?php
-$id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
-var_dump($id);
+$id = $_GET["id"];
 require('includes/pdo.php');
 
 $maRequete = $pdo->prepare("SELECT * FROM users WHERE iduser =:id");
