@@ -1,30 +1,14 @@
 <?php
-// require('./pdo.php');
 
 // $id_gpe provient du clic depuis group_search.php
 // $id_gpe = filter_input(INPUT_GET, "id_gpe", FILTER_VALIDATE_INT);
 // $idUserFromGpe = filter_input(INPUT_GET, "idUserFromGpe", FILTER_VALIDATE_INT); // pour l'instant on se base sur 4 (Hermann) - sera aussi utilisé dans l'url de quit
 //$idMemberAdded = filter_input(INPUT_GET, "idMemberAdded", FILTER_VALIDATE_INT); // On se base sur 4
 //$idMemberDelete = filter_input(INPUT_GET, "idUserDelete", FILTER_VALIDATE_INT);
-$id_gpe = 1;
+
 $idUserFromGpe = 4;
 $idMemberAdded = 4;
 $idMemberDelete = 1;
-
-// -- Requête qui sert à savoir à quel groupe j'ai affaire et sélectionner ainsi la bonne row (en fonction du groupe choisi dans search_group).
-if($id_gpe) {
-
-    $maRequeteGpe = $pdo->prepare("SELECT * FROM groups
-                            WHERE groups.idgroups=:id_gpe");
-
-    $maRequeteGpe->execute([
-        ":id_gpe" => $id_gpe
-    ]);
-
-    $maRequeteGpe->setFetchMode(PDO::FETCH_ASSOC);
-    $groups = $maRequeteGpe->fetchAll();
-}
-
 
 // Requête pour identifier l'id de l'utilisateur du groupe (là où il y a à la fois l'utilisateur et le groupe sélectionné)
 // Pour aussi récupérer les 2 autres colonnes: le statut de l'utilisateur dans le groupe (admin = 1) et l'id du groupe en question

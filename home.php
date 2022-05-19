@@ -13,7 +13,7 @@ $maRequeteUsers->execute(array($_SESSION["user"]));
 $user = $maRequeteUsers->fetchAll();
 $saveUser = $user[0]['iduser'];
 
-$maRequeteContact = $pdo->prepare("SELECT * FROM users u, relation r WHERE r.users_iduser = :saveUser AND r.users_iduser1 = u.iduser");
+$maRequeteContact = $pdo->prepare("SELECT * FROM users u, relation r WHERE r.id_demandeur = :saveUser AND r.id_receveur = u.iduser");
 $maRequeteContact->execute([
   ":saveUser" => $saveUser
 ]);
@@ -88,7 +88,7 @@ $pages = $maRequetePages->fetchAll();
       <div id="liste">
         <ul>
           <li><img class="svg" src="svg/user.svg" alt=""><a href="#">My Profil</a></li>
-          <li> <img class="svg" src="svg/users.svg" alt=""><a href="#">My Groups</a></li>
+          <li> <img class="svg" src="svg/users.svg" alt=""><a href="./groups/group_search.php">My Groups</a></li>
           <li> <img class="svg"  src="svg/book-open.svg" alt=""> <a href="#">My Pages</a></li>
           <li> <img class="svg"  src="svg/message-circle.svg" alt=""><a href="#">My Discussions</a></li>
         </ul>

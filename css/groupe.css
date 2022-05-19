@@ -94,6 +94,18 @@ main {
     background-color: #5a189a!important;
 }
 
+.post-gpe {
+    padding:2em;
+}
+
+#post-avatar {
+    width:60px!important;
+    height:60px!important;
+    border-radius:50%!important;
+    border: solid black 1px!important;
+}
+
+
 /* Media queries sur la nav bar car à 1095px de large les buttons s'agrandissent sans respecter leur height initiale */
 @media screen and (max-width:1400px) {
 

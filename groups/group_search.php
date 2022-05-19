@@ -1,20 +1,26 @@
 <?php
-require('./includes/pdo.php');
+session_start();
+if(!isset($_SESSION['user'])){
+  header('Location: ../index.php');
+  die();
+}
 
-$myRequest_search_gpe = $pdo->prepare("SELECT * FROM groups");
+require('../includes/pdo.php');
 
-$myRequest_search_gpe->execute();
 
+$maRequeteUsers = $pdo->prepare("SELECT * FROM users WHERE token=?");
+$maRequeteUsers->execute(array($_SESSION["user"]));
+$user = $maRequeteUsers->fetchAll();
+$saveUser = $user[0]['iduser'];
+
+$myRequest_search_gpe = $pdo->prepare("SELECT * FROM groups_has_users ghu
+                                        INNER JOIN groups g ON g.idgroups = ghu.groups_idgroups 
+                                        WHERE ghu.users_iduser = :user");
+$myRequest_search_gpe->execute([
+  ":user" => $saveUser
+]);
 $myGroups = $myRequest_search_gpe->fetchAll(PDO::FETCH_ASSOC);
 
-print_r($myGroups.'<br/>');
-
-var_dump($myGroups[0]["idgroups"]." ".$myGroups[0]["name"]);
-var_dump($myGroups[1]["idgroups"]." ".$myGroups[1]["name"]);
-var_dump($myGroups[2]["idgroups"]." ".$myGroups[2]["name"]);
-var_dump($myGroups[3]["idgroups"]." ".$myGroups[3]["name"]);
-var_dump($myGroups[4]["idgroups"]." ".$myGroups[4]["name"]);
-var_dump($myGroups[5]["idgroups"]." ".$myGroups[5]["name"]);
 ?>
 
 
@@ -24,9 +30,9 @@ var_dump($myGroups[5]["idgroups"]." ".$myGroups[5]["name"]);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/groupe.css" type="text/css">
-    <link rel="stylesheet" href="css/footer.css" type="text/css">
-    <link rel="stylesheet" href="css/header.css" type="text/css">
+    <link rel="stylesheet" href="../css/groupe.css" type="text/css">
+    <link rel="stylesheet" href="../css/footer.css" type="text/css">
+    <link rel="stylesheet" href="../css/header.css" type="text/css">
     <!-- Bootstrap nav-bar style -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -34,7 +40,7 @@ var_dump($myGroups[5]["idgroups"]." ".$myGroups[5]["name"]);
     <title>Rechercher un groupe</title>
 </head>
 <body>
-    <?php require('./partials/header.php'); ?>
+    <?php require('../partials/header.php'); ?>
 
 <article class="container-gpe mt-5">
 <!-- shadow p-3 mb-5 bg-body rounded -->

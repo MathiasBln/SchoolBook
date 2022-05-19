@@ -1,7 +1,3 @@
-<?php 
-require('./includes/pdo.php');
-require('./includes/requests_homegpe.php');
-?>
 
 <section class="header-gpe">
         <section class="banner-gpe">
@@ -22,10 +18,11 @@ require('./includes/requests_homegpe.php');
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">  
                     <a class="nav-link nav-link-gpe" href="./group_presentation.php">A propos</a>
-                    <a class="nav-link nav-link-gpe" href="./group.php">Sujets</a>
                     <a class="nav-link nav-link-gpe" href="./group_invitation.php">Invitez vos amis</a>
                     <a class="nav-link nav-link-gpe" href="./group_members.php?id_gpe=<?= $groups[0]["idgroups"]?>">Membres du groupe</a>
-                    <a class="nav-link nav-link-gpe" href="./group_quit.php?id_gpe=<?= $groups[0]["idgroups"]?>&idUserFromGpe=0">Nous quitter</a>
+                    <?php if($user[0]["status"] == 1): ?>
+                        <a class="nav-link nav-link-gpe" href="updateGroup.php?id_gpe=<?= $id_gpe?>">Modifier</a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
