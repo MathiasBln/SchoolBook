@@ -1,18 +1,46 @@
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <head>
+        <title>SchoolBook</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link href="style.css" rel="stylesheet" type="text/css" /> 
+    </head>
+        
+    <body>
+        <h1>SchoolBook</h1>
+        <p>Derniers commentaires :</p>
+ 
 <?php
-# When installed via composer
-require_once 'vendor/autoload.php';
-$faker = Faker\Factory::create();
-for ($i = 0; $i < 10; $i++) {
-  echo $faker->name, "\n";
-} ?>
+try
+{
+	$bdd = new PDO('mysql:host=localhost;dbname=test', 'root', '');
+}
+catch(Exception $e)
+{
+        die('Erreur : '.$e->getMessage());
+}
+
+
+$req = $bdd->query('SELECT idavis, content, FROM comments ORDER BY date_creation DESC LIMIT 0, 5');
+
+while ($donnees = $req->fetch())
+{
+?>
+<div class="news">
+    <h3>
+    </h3>
+    
+    <p>
+    <?php
+    echo nl2br(htmlspecialchars($donnees['content']));
+    ?>
+    <br />
+    <em><a href="commentaires.php?billet=<?php echo $donnees['id']; ?>">Commentaires</a></em>
+    </p>
+</div>
+<?php
+}
+$req->closeCursor();
+?>
 </body>
 </html>
