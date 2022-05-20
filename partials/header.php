@@ -11,13 +11,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <a id="home"class="nav-link active" aria-current="page" href="home.php">Home</a>
+                <a id="home"class="nav-link active" aria-current="page" href="http://localhost:8888/schoolbook/home.php">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="./group_search.php">Groups</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost/SchoolBook/pages.php">Pages</a>
+                <a class="nav-link" href="http://localhost:8888/schoolbook/pages.php">Pages</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Discussions</a>

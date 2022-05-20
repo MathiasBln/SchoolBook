@@ -1,49 +1,43 @@
 <?php 
 require('../includes/pdo.php');
 
+//save information groupe of the URL
 $id_gpe = $_GET['id_gpe'];
+
+//Start session
 session_start();
 if(!isset($_SESSION['user'])){
   header('Location: ../index.php');
   die();
 }
 
-
+//save information of the user connect
 $maRequeteUsers = $pdo->prepare("SELECT * FROM users INNER JOIN groups_has_users ghu ON ghu.users_iduser = users.iduser WHERE token=?");
 $maRequeteUsers->execute(array($_SESSION["user"]));
 $user = $maRequeteUsers->fetchAll();
 $saveUser = $user[0]['iduser'];
 
-
-$maRequeteGpe = $pdo->prepare("SELECT * FROM groups
-WHERE groups.idgroups=:id_gpe");
-
+//take information from the table group where idGroup = idgroup from the URL
+$maRequeteGpe = $pdo->prepare("SELECT * FROM groups WHERE groups.idgroups=:id_gpe");
 $maRequeteGpe->execute([
 ":id_gpe" => $id_gpe
 ]);
-
-
 $maRequeteGpe->setFetchMode(PDO::FETCH_ASSOC);
 $groups = $maRequeteGpe->fetchAll();
 
-$myRequestPostGpe = $pdo->prepare("SELECT * FROM posts
-                                       INNER JOIN users u ON u.iduser = posts.users_iduser
-                                       WHERE posts.groups_idgroups = :gpe_id;");
+///Select all the post in the groups
+$myRequestPostGpe = $pdo->prepare("SELECT * FROM posts INNER JOIN users u ON u.iduser = posts.users_iduser
+                                   WHERE posts.groups_idgroups = :gpe_id;");
 $myRequestPostGpe->execute([
     ":gpe_id" => $id_gpe
 ]);
-
-
-
 $myRequestPostGpe->setFetchMode(PDO::FETCH_ASSOC);
 $postsGpe = $myRequestPostGpe->fetchAll();
 
 
-
-$myRequest_members = $pdo->prepare("SELECT * FROM groups_has_users ghu 
-                                    INNER JOIN users u ON u.iduser = ghu.users_iduser
+//Save the information of the link between user and group
+$myRequest_members = $pdo->prepare("SELECT * FROM groups_has_users ghu INNER JOIN users u ON u.iduser = ghu.users_iduser
                                     WHERE ghu.groups_idgroups = :id_gpe");
-
 $myRequest_members->execute([
 ":id_gpe" => $id_gpe
 ]);
@@ -67,74 +61,75 @@ $myGroupMembers = $myRequest_members->fetchAll(PDO::FETCH_ASSOC);
     <title>A propos de <?= $groups[0]["name"] ?></title>
 </head>
 <body>
-<?php require('../partials/header.php'); ?>
-<?php require('navigation_gpe.php'); ?>
 
-<main>
+    <?php require('../partials/header.php'); ?>
+    <?php require('navigation_gpe.php'); ?>
+    
 
-<div class="container">
-     <div class="a-propos-groupe">
-            <h1>A propos de nous</h1>
-            <p><?= $groups[0]["description"]?></p>
-        </div>
-    </div>
-
-    <div id="post">
-    <div class="container container-gpe" style="text-align:center;">
+    <div id="postTest">
+        <?php require('postGroup.php'); ?>
+        <div class="container container-gpe" style="text-align:center;">
             <h2>Postes des membres: </h2>
-            </div> 
-
-        <section class="container container-gpe ms-2">
-            
-            <div id="profile_content" style="display:block">             
-            <div>
-                <?php foreach($postsGpe as $postGpe){ ?>
-                <div class="post mt-2 ms-3" style="background-color: rgba(224, 170, 255,0.2); border-radius:10px;">
-                    <img src=<?= $postGpe["avatar"] ?> alt="avatar user" id="post-avatar">
-                    <h3 class="p-1"><?= $postGpe["first_name"] . ' ' . $postGpe["last_name"] ?></h3>
-                    <p class="p-1"> <?= $postGpe["content"]; ?> </p>
-                    <p class="p-1"> <?= $postGpe["date_publish"]; ?> </p>
-                    <img src=<?= $postGpe["image"]; ?> alt="image_du_post" class="p-5" style="height:auto; width:100%;">
-                </div>
+        </div> 
+          
+        <div id="postSection">
+           <?php foreach($postsGpe as $postGpe){ ?>
+            <div class="publicationPost m-5">
+                <img src=<?= $postGpe["avatar"] ?> alt="avatar user" id="post-avatar">
+                <h3 class="p-1"><?= $postGpe["username"] . ' ' . $postGpe["last_name"] ?></h3>
+                <p class="p-1"> <?= $postGpe["content"]; ?> </p>
+                <p class="p-1"> <?= $postGpe["date_publish"]; ?> </p>
+                <?php if($postGpe["image"] == NULL){ ?>
+                <img src="assets/<?= $postGpe["image"]; ?>" alt="image_du_post" class="p-5">
                 <?php }; ?>
             </div>
+        <?php }; ?> 
         </div>
-    
-    </section>
+        
     </div>
 
-<article id="members" class="container-gpe mt-5">
 
-    <div class="card mb-3 shadow p-3 mb-5 bg-body rounded" style="max-width: 100vw;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="assets/people_tree.jpg" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Voici les membres du groupe:</h5>
-                    <ul class="list-group list-group-flush">
-                        <?php foreach($myGroupMembers as $myGroupMember): ?>  
-                            <li class="list-group-item"><?= $myGroupMember["first_name"].' '.$myGroupMember["last_name"]?></li>
-                            <?php if($user[0]["status"] == 1): ?>
-                                <a class="btn btn-danger" href="delete.php?id=<?= $myGroupMember["iduser"] ?>&amp;gpe=<?= $id_gpe ?>">Exclure</a>
+
+    <div id="members">
+
+        <div class="card mb-3 shadow p-3 mb-5 bg-body rounded" style="max-width: 100vw;">
+            <div class="row g-0">
+
+                <div class="col-md-4">
+                    <img src="assets/people_tree.jpg" class="img-fluid rounded-start" alt="...">
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Voici les membres du groupe:</h5>
+
+                        <ul class="list-group list-group-flush">
+                            <div id="sectionMembers">
+                                <?php foreach($myGroupMembers as $myGroupMember): ?>  
+                                <li class="list-group-item"><?= $myGroupMember["username"].' '.$myGroupMember["last_name"]?></li>
+                                
+                                <?php if($user[0]["status"] == 1): ?>
+                                    <a class="btn btn-danger m-1" href="delete.php?id=<?= $myGroupMember["iduser"] ?>&amp;gpe=<?= $id_gpe ?>">Exclure</a>
                                     <?php if($myGroupMember["status"] == 1): ?>
-                                    <a class="btn btn-success" href="updateToMember.php?id=<?= $myGroupMember["iduser"] ?>&amp;gpe=<?= $id_gpe ?>">Admin</a>
+                                        <a class="btn btn-success m-1" href="updateToMember.php?id=<?= $myGroupMember["iduser"] ?>&amp;gpe=<?= $id_gpe ?>">Admin</a>
                                     <?php else: ?>
-                                    <a class="btn btn-success" href="updateToAdmin.php?id=<?= $myGroupMember["iduser"] ?>&amp;gpe=<?= $id_gpe ?>">Membre</a>
-
+                                        <a class="btn btn-success m-1" href="updateToAdmin.php?id=<?= $myGroupMember["iduser"] ?>&amp;gpe=<?= $id_gpe ?>">Membre</a>
                                     <?php endif; ?>
                                 <?php endif; ?>
-                        <?php endforeach; ?>
-                    </ul> 
+                            <?php endforeach; ?>
+                            </div>
+                            
+                        </ul> 
+
+                    </div>
                 </div>
+
             </div>
         </div>
-    </div>
 
-</article>                
+    </div>                
 
-</main>
+    <script src="buttonNav.js"></script>
 
 </body>
 </html>

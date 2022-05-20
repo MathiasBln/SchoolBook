@@ -1,5 +1,4 @@
 <?php
-// $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
 $id = $_GET["id"];
 require('includes/pdo.php');
 
@@ -52,6 +51,8 @@ $subs = $maRequete4->fetchAll();
 <body>
     <?php //require('partials/header.php'); ?>
    
+
+    
     <div id="whole_content">
         <div class="banner">
             <img src=<?php
@@ -69,7 +70,7 @@ $subs = $maRequete4->fetchAll();
         <div id="title_page">
             <h1><?php  echo($element["title"]);}; ?></h1>
         </div>
-        <button> Subscribe </button>
+        <button style="visibility:visible;"> Subscribe </button>
         <div id="description">
             <p>
                 <?= $element["description"]; ?>
@@ -78,6 +79,7 @@ $subs = $maRequete4->fetchAll();
         <div id="page_content">              
             <div>
                 <h2>Posts</h2>
+                <?php //require('postsPage.php')?>
                 <?php foreach($posts as $post){ ?>
                 <div class="post">
                     <h3></h3>
@@ -97,7 +99,7 @@ $subs = $maRequete4->fetchAll();
                             {echo ("avatar/no_avatar.png");
                             } else{echo($admin["avatar"]);} ?>
                                                                 alt="image_page_sub"> 
-                    <a href="old_profil.php?id=<?= $admin["iduser"] ?>"><?= $admin["first_name"] . ' ' . $admin["last_name"]; };?> </a>
+                    <a href="old_profil.php?id=<?= $admin["iduser"] ?>"><?= $admin["username"] . ' ' . $admin["last_name"]; };?> </a>
                 </p>
             </div>
             <div id="subs">
@@ -109,7 +111,7 @@ $subs = $maRequete4->fetchAll();
                             {echo ("avatar/no_avatar.png");
                             } else{echo($sub["avatar"]);} ?> 
                                                                 alt="image_page_sub"> 
-                    <a href="old_profil.php?id=<?= $sub["iduser"] ?>"><?= $sub["first_name"] . ' ' . $sub["last_name"]; }; ?> </a>
+                    <a href="old_profil.php?id=<?= $sub["iduser"] ?>"><?= $sub["username"] . ' ' . $sub["last_name"]; }; ?> </a>
                 </p>
             </div>            
             </div>

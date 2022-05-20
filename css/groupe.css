@@ -131,3 +131,77 @@ main {
         display:none;
     }
 }
+
+
+
+
+
+
+
+#postTest{
+    display: block; 
+}
+
+#members{
+    display: none;
+}
+
+#sectionCreation{
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#createGroup{
+    width: 650px;
+    box-shadow: 5px 5px 5px 5px lightgray;
+}
+
+
+#post {
+    width: 500px;
+    height: 160px;
+    margin-bottom: 50px;
+    margin-left:450px;
+    margin-top:50px;
+    box-shadow: 5px 5px 5px 5px lightgray;
+}
+
+#textZone {
+    height: 30%;
+    width: 80%;
+    margin: 15px;
+    padding: 10px;
+}
+
+#submit {
+    display: flex;
+    justify-content: space-around;
+}
+
+#postSection{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.publicationPost {
+    box-shadow: 5px 5px 5px 5px lightgray;
+    width: 500px;
+}
+
+#sectionMembers{
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+}
+
+#contacts{
+    display: flex;
+    justify-content: center;
+}
+
+#contact{
+    box-shadow: 5px 5px 5px 5px lightgray;
+}

@@ -1,12 +1,14 @@
 <?php 
 require('../includes/pdo.php');
 
+//save information from the URL
 $user = $_GET['id'];
 $group = $_GET['gpe'];
-$maRequeteDelete = $pdo->prepare("UPDATE groups_has_users SET status= 0 
-                                  WHERE users_iduser = :user AND groups_idgroups = :gpe");
 
-$maRequeteDelete->execute([ 
+//transform admin to members
+$updateToMembers = $pdo->prepare("UPDATE groups_has_users SET status= 0 
+                                  WHERE users_iduser = :user AND groups_idgroups = :gpe");
+$updateToMembers->execute([ 
     ":user" => $user,
     ":gpe" => $group
 ]);

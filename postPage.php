@@ -2,18 +2,17 @@
 
 // Vérifier si le formulaire est soumis 
 if ( isset($_POST['submit'])) {
-    $user = $user[0]['iduser'];
+    $page = $page[0]['idpages'];
     $content = $_POST['content'];
     
-    //if $_FILES is empty, insert into without image
+
     if ($_FILES['file']['name'] == ""){
-        $query = $pdo->prepare("INSERT INTO posts (`content`, `users_iduser`) VALUES (:content, :id)");
+        $query = $pdo->prepare("INSERT INTO posts (`content`, `pages_idpages`) VALUES (:content, :idpages)");
         $query->execute([
             ":content" => $content,
-            ":id" => $user,
+            ":idpages" => $page,
         ]);
-        header('Location: home.php');
-    //if $_FILES is full, insert into with image
+        header('Location: page.php?=$page');
     } else {
         $tmpName = $_FILES['file']['tmp_name'];
         $name = $_FILES['file']['name'];
@@ -27,13 +26,13 @@ if ( isset($_POST['submit'])) {
             $file = $uniqueName.".".$extension;
             move_uploaded_file($tmpName, './upload/'.$file);
 
-            $query = $pdo->prepare("INSERT INTO posts (`content`, `image`, `users_iduser`) VALUES (:content, :imageFile, :id)");
+            $query = $pdo->prepare("INSERT INTO posts (`content`, `image`, `pages_idpages`) VALUES (:content, :imageFile, :idpages)");
             $query->execute([
                 ":content" => $content,
                 ":imageFile" => $file,
-                ":id" => $user,
+                ":idpages" => $page,
             ]);
-            header('Location: home.php');
+            header('Location: page.php?id=$page');
         }
     }
 }
@@ -42,7 +41,7 @@ if ( isset($_POST['submit'])) {
 
 
 <form id="post" action="" method="POST" enctype="multipart/form-data" >
-    <img id="postPicture" src=<?= $user[0]["avatar"] ?> alt="">
+    <img id="postPicture" src=<?= $page[0]["avatar"] ?> alt="">
     <input id="textZone" name="content" placeholder="Write something there..">
     <img id="hr" src="svg/hr.svg" alt="">
     <div id="submit">

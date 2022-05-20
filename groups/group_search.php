@@ -1,4 +1,6 @@
 <?php
+
+//start a session
 session_start();
 if(!isset($_SESSION['user'])){
   header('Location: ../index.php');
@@ -7,14 +9,14 @@ if(!isset($_SESSION['user'])){
 
 require('../includes/pdo.php');
 
-
+//save information of the user connect
 $maRequeteUsers = $pdo->prepare("SELECT * FROM users WHERE token=?");
 $maRequeteUsers->execute(array($_SESSION["user"]));
 $user = $maRequeteUsers->fetchAll();
 $saveUser = $user[0]['iduser'];
 
-$myRequest_search_gpe = $pdo->prepare("SELECT * FROM groups_has_users ghu
-                                        INNER JOIN groups g ON g.idgroups = ghu.groups_idgroups 
+//select all the group where user connect is in
+$myRequest_search_gpe = $pdo->prepare("SELECT * FROM groups_has_users ghu INNER JOIN groups g ON g.idgroups = ghu.groups_idgroups 
                                         WHERE ghu.users_iduser = :user");
 $myRequest_search_gpe->execute([
   ":user" => $saveUser
@@ -40,36 +42,32 @@ $myGroups = $myRequest_search_gpe->fetchAll(PDO::FETCH_ASSOC);
     <title>Rechercher un groupe</title>
 </head>
 <body>
-    <?php require('../partials/header.php'); ?>
+  <?php require('../partials/header.php'); ?>
+  <article class="container-gpe mt-5">
+    <div class="card mb-3 shadow bg-body rounded mt-5" style="max-width: 100vw;">
+      <div class="row g-0 p-x-0 m-x-0">
 
-<article class="container-gpe mt-5">
-<!-- shadow p-3 mb-5 bg-body rounded -->
-<div class="card mb-3 shadow bg-body rounded mt-5" style="max-width: 100vw;">
-  <div class="row g-0 p-x-0 m-x-0">
+        <div class="col-4 picture-container">
+          <img src="assets/people_tree.jpg" class="img-tree img-fluid rounded-start" style="height:100%; width:auto;" alt="...">
+        </div>
 
-    <div class="col-4 picture-container">
-      <img src="assets/people_tree.jpg" class="img-tree img-fluid rounded-start" style="height:100%; width:auto;" alt="...">
-    </div>
+        <div class="col-8">
+          <div class="card-body">
+            <h5 class="card-title">Groupes disponibles:</h5>
+            <ul class="list-group list-group-flush">
+            <?php for($i= 0; $i < count($myGroups); $i++): ?>  
+            <li>
+                <a class="list-group-item list-group-item-action text-decoration-none" href="group_presentation.php?id_gpe=<?= $myGroups[$i]["idgroups"] ?>"><?= $myGroups[$i]["name"] ?> </a>
+            </li>
+            <?php endfor; ?>
+            </ul>  
+            <a class="btn btn-success mt-5"href="createGroup.php">Create a group</a>
+          </div>
+        </div>
 
-    <div class="col-8">
-
-      <div class="card-body">
-        <h5 class="card-title">Groupes disponibles:</h5>
-        <ul class="list-group list-group-flush">
-        <?php for($i= 0; $i < count($myGroups); $i++): ?>  
-        <li>
-            <a class="list-group-item list-group-item-action text-decoration-none" href="group_presentation.php?id_gpe=<?= $myGroups[$i]["idgroups"] ?>"><?= $myGroups[$i]["name"] ?> </a>
-        </li>
-        <?php endfor; ?>
-        </ul>  
       </div>
     </div>
-  </div>
-</div>
-
-        </article>
-
-</article>
+  </article>
 
 </body>
 </html>

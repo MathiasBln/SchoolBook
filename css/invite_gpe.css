@@ -21,3 +21,8 @@ li {
 a {
     color:black;
 }
+
+#postPicture{
+    width: 10vw;
+    height: 10vh;
+}

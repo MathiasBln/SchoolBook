@@ -7,19 +7,22 @@ if(!isset($_SESSION['user'])){
 
 require('includes/pdo.php');
 
-
+//save information from the user connect
 $maRequeteUsers = $pdo->prepare("SELECT * FROM users WHERE token=?");
 $maRequeteUsers->execute(array($_SESSION["user"]));
 $user = $maRequeteUsers->fetchAll();
 $saveUser = $user[0]['iduser'];
 
-$maRequeteContact = $pdo->prepare("SELECT * FROM users u, relation r WHERE r.id_demandeur = :saveUser AND r.id_receveur = u.iduser");
+
+//save the friend of user connect
+$maRequeteContact = $pdo->prepare("SELECT * FROM users u, relation r WHERE r.users_iduser = :saveUser AND r.users_iduser1 = u.iduser");
 $maRequeteContact->execute([
   ":saveUser" => $saveUser
 ]);
 $maRequeteContact->setFetchMode(PDO::FETCH_ASSOC);
 $contacts = $maRequeteContact->fetchAll();
 
+//save information where user follows pages
 $maRequetePostByPages = $pdo->prepare("SELECT * FROM users_has_pages uhp WHERE uhp.users_iduser = :saveUser");
 $maRequetePostByPages->execute([
   ":saveUser" => $saveUser
@@ -27,11 +30,13 @@ $maRequetePostByPages->execute([
 $maRequetePostByPages->setFetchMode(PDO::FETCH_ASSOC);
 $publications = $maRequetePostByPages->fetchAll();
 
+//select all the post
 $maRequetePost = $pdo->prepare("SELECT * FROM posts p ORDER BY date_publish DESC");
 $maRequetePost->execute();
 $maRequetePost->setFetchMode(PDO::FETCH_ASSOC);
 $results = $maRequetePost->fetchAll();
 
+//select all the pages
 $maRequetePages = $pdo->prepare("SELECT * FROM pages p");
 $maRequetePages->execute();
 $maRequetePages->setFetchMode(PDO::FETCH_ASSOC);
@@ -122,38 +127,27 @@ $pages = $maRequetePages->fetchAll();
       
       <div id="Contact">
         <?php foreach ($results as $result):
-          if ($result["users_iduser"] == $saveUser && $result["pages_idpages"] == NULL && $result["groups_idgroups"] == NULL){
-            if($result["image"] == NULL){ ?>
+          if ($result["users_iduser"] == $saveUser && $result["pages_idpages"] == NULL && $result["groups_idgroups"] == NULL){?>
               <div id="publication"> 
                 <p><?= $user[0]["first_name"] . ' ' . $user[0]["last_name"] ?></p>
                 <p id="friends"><?= $result["content"] ?></p> 
-                <p id="date"><?= $result["date_publish"] ?></p>           
-              </div>
-            <?php }else { ?>
-              <div id="publication"> 
-                <p><?= $user[0]["first_name"] . ' ' . $user[0]["last_name"] ?></p>
-                <p id="friends"><?= $result["content"] ?></p> 
+                <?php if($result["image"] == NULL){ ?>
                 <img id="publicationImage" src= "upload/<?= $result["image"] ?>">
+                <?php } ?>
                 <p id="date"><?= $result["date_publish"] ?></p>           
               </div>
-            <?php } ?>
           <?php   }
           foreach ($contacts as $contact):
-            if ($result["users_iduser"] == $contact["iduser"] && $result["pages_idpages"] == NULL && $result["groups_idgroups"] == NULL){ 
-              if($result["image"] == NULL){ ?>
+            if ($result["users_iduser"] == $contact["iduser"] && $result["pages_idpages"] == NULL && $result["groups_idgroups"] == NULL){ ?>
                 <div id="publication"> 
                   <p><?= $contact["first_name"] . ' ' . $contact["last_name"] ?></p>
                   <p id="friends"><?= $result["content"] ?></p> 
-                  <p id="date"><?= $result["date_publish"] ?></p> 
-                </div>
-              <?php }else { ?>
-                <div id="publication"> 
-                  <p><?= $contact["first_name"] . ' ' . $contact["last_name"] ?></p>
-                  <p id="friends"><?= $result["content"] ?></p> 
+                  <?php if($result["image"] == NULL){ ?>
                   <img id="publicationImage" src= <?= $result["image"] ?>>
+                  <?php } ?>
                   <p id="date"><?= $result["date_publish"] ?></p> 
                 </div>
-              <?php } ?>
+              
             <?php  }
           endforeach;
         endforeach; 
