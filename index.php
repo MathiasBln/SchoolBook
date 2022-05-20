@@ -6,7 +6,7 @@ if(isset($_POST['email']) && isset($_POST['password'])){
 }
 // IF USER ALREADY LOGGED IN
 if(isset($_SESSION['email'])){
-  header('Location: profile.php');
+  header('Location: home.php');
   exit;
 }
 ?>
@@ -21,8 +21,6 @@ if(isset($_SESSION['email'])){
 </head>
 <body>
     <div class="login-form">
-
-
     <?php 
                 if(isset($_GET['login_err']))
                 {

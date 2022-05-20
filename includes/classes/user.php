@@ -36,7 +36,7 @@ class User{
 
 
                     ];
-                    header('Location: profile.php');
+                    header('Location: home.php');
                 }
                 else{
                     header('Location: index.php?login_err=password'); die();

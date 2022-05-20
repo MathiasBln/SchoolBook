@@ -14,10 +14,10 @@
                 <a id="home"class="nav-link active" aria-current="page" href="home.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Groups</a>
+                <a class="nav-link" href="./group_search.php">Groups</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost/SchoolBook/pages.php">Pages</a>
+                <a class="nav-link" href="pages.php">Pages</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Discussions</a>

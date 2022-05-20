@@ -1,19 +1,19 @@
 <?php
 
-// Vérifier si le formulaire est soumis 
+// check if the form is submit
 if ( isset($_POST['submit'])) {
     $user = $user[0]['iduser'];
     $content = $_POST['content'];
     
-    //if $_FILES is empty, insert into without image
+    //if $_FILES is empty add information without image
     if ($_FILES['file']['name'] == ""){
-        $query = $pdo->prepare("INSERT INTO posts (`content`, `users_iduser`) VALUES (:content, :id)");
+        $query = $pdo->prepare("INSERT INTO posts (`content`, `users_iduser`, `groups_idgroups`) VALUES (:content, :id, :id_grp)");
         $query->execute([
             ":content" => $content,
             ":id" => $user,
+            ":id_grp" => $id_gpe
         ]);
-        header('Location: home.php');
-    //if $_FILES is full, insert into with image
+    //if $_FILES is full add information with image
     } else {
         $tmpName = $_FILES['file']['tmp_name'];
         $name = $_FILES['file']['name'];
@@ -25,15 +25,15 @@ if ( isset($_POST['submit'])) {
         if(in_array($extension, $extensions)){
             $uniqueName = uniqid('', true);
             $file = $uniqueName.".".$extension;
-            move_uploaded_file($tmpName, './upload/'.$file);
+            move_uploaded_file($tmpName, './assets/'.$file);
 
-            $query = $pdo->prepare("INSERT INTO posts (`content`, `image`, `users_iduser`) VALUES (:content, :imageFile, :id)");
+            $query = $pdo->prepare("INSERT INTO posts (`content`, `image`, `users_iduser`, `groups_idgroups`) VALUES (:content, :imageFile, :id, :id_grp)");
             $query->execute([
                 ":content" => $content,
                 ":imageFile" => $file,
                 ":id" => $user,
+                ":id_grp" => $id_gpe
             ]);
-            header('Location: home.php');
         }
     }
 }
@@ -42,7 +42,6 @@ if ( isset($_POST['submit'])) {
 
 
 <form id="post" action="" method="POST" enctype="multipart/form-data" >
-    <img id="postPicture" src="profile_images/<?= $user[0]["avatar"] ?>" alt="">
     <input id="textZone" name="content" placeholder="Write something there..">
     <img id="hr" src="svg/hr.svg" alt="">
     <div id="submit">
