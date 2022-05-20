@@ -1,11 +1,19 @@
 <?php
-//  $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+$id = $_GET["id"];
+
 require('includes/pdo.php');
 
-$maRequete = $pdo->prepare("SELECT * FROM pages p , users u, users_has_pages uhp WHERE (u.iduser = 12 AND uhp.users_iduser = u.iduser) AND (uhp.pages_idpages = p.idpages)");
-$maRequete->execute();
-$maRequete->execute();
+$maRequete = $pdo->prepare("SELECT * FROM pages p , users u, users_has_pages uhp WHERE (u.iduser = :id AND uhp.users_iduser = u.iduser) AND (uhp.pages_idpages = p.idpages)");
+$maRequete->execute([
+    ":id" => $id
+]);
 $pages = $maRequete->fetchAll(PDO::FETCH_ASSOC);
+
+$maRequete2 = $pdo->prepare("SELECT * FROM pages p , users u, users_has_pages uhp WHERE (u.iduser = :id AND uhp.users_iduser = u.iduser) AND (uhp.pages_idpages != p.idpages)");
+$maRequete2->execute([
+    ":id" => $id
+]);
+$autres_pages = $maRequete2->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -28,11 +36,18 @@ $pages = $maRequete->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <?php //require('partials/header.php');?>
     <div id="pages">
-    <?php foreach($pages as $page){ ?>
+    
 
         <h2>Vos pages</h2>
-    <p><a href="page.php?id=<?= $page["idpages"]?>"><?= $page["title"];}; ?></a></p></div>
 
+        <?php foreach($pages as $page){ ?>
+        <p><a href="page.php?id=<?= $page["idpages"]?>"><?= $page["title"];}; ?></a></p>
+        
+        <h2>Les autres pages</h2>
+        <?php foreach($autres_pages as $autre_page){ ?>
+        <p><a href="page.php?id=<?= $autre_page["idpages"]?>"><?= $autre_page["title"];}; ?></a></p>
+    
+    </div>
     <?php require('partials/footer.php'); ?>
 
 </body>
