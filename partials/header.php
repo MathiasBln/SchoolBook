@@ -17,7 +17,7 @@
                 <a class="nav-link" href="./group_search.php">Groups</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pages</a>
+                <a class="nav-link" href="http://localhost/SchoolBook/pages.php">Pages</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Discussions</a>

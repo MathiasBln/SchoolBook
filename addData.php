@@ -34,7 +34,7 @@ for ($i = 0; $i < 10; $i++){
     $word = $faker->word;
     var_dump($word);
     $test = password_hash($word, PASSWORD_DEFAULT);
-    $query = "INSERT INTO users (`first_name`, `last_name`, `email`, `password`, `ip`, `token`, `avatar`, `banner`, `schools_id`) VALUES ('{$faker->firstname}','{$faker->lastname}','{$faker->email}','$test','{$faker->ipv4}','{$faker->ipv4}','{$faker->imageUrl($width = 640, $height = 480)}','{$faker->imageUrl($width = 640, $height = 480)}','{$faker->numberBetween(1,10)}')";
+    $query = "INSERT INTO users (`username`, `last_name`, `email`, `password`, `ip`, `token`, `avatar`, `banner`, `schools_id`) VALUES ('{$faker->firstname}','{$faker->lastname}','{$faker->email}','$test','{$faker->ipv4}','{$faker->ipv4}','{$faker->imageUrl($width = 640, $height = 480)}','{$faker->imageUrl($width = 640, $height = 480)}','{$faker->numberBetween(1,10)}')";
     $statement = $pdo->exec($query);
 };
 
@@ -64,7 +64,7 @@ for ($i = 0; $i < 10; $i++){
 };
 
 for ($i = 0; $i < 25; $i++){
-    $query = "INSERT INTO relation (`users_iduser`, `users_iduser1`) VALUES ('{$faker->numberBetween(1,10)}','{$faker->numberBetween(1,10)}')";
+    $query = "INSERT INTO relation (`user_one`, `user_two`) VALUES ('{$faker->numberBetween(1,10)}','{$faker->numberBetween(1,10)}')";
     $statement = $pdo->exec($query);
 };
 

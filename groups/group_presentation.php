@@ -33,6 +33,8 @@ $myRequestPostGpe->execute([
     ":gpe_id" => $id_gpe
 ]);
 
+
+
 $myRequestPostGpe->setFetchMode(PDO::FETCH_ASSOC);
 $postsGpe = $myRequestPostGpe->fetchAll();
 
