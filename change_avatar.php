@@ -9,14 +9,15 @@
     {
         header('Location: index.php');
         die();
-    }
+    } 
 
+ 
 
     // Si les variables existent 
    /*  $avatar = htmlspecialchars($_POST['avatar']); */
    if(isset($_POST['envoyer'])){
     $avatar = htmlspecialchars($_POST['avatar']); 
-    $dossier = "upload/" . $_SESSION['user'] . "/";
+    $dossier = "profile_images/";
  // On récupère les infos de l'utilisateur
  $check_avatar  = $pdo->prepare('SELECT avatar FROM users WHERE token = :token');
  $check_avatar->execute(array(
@@ -38,8 +39,8 @@
     if(move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
     {
         // on vient supprimer s'il y'avait déja une image
-        if(file_exists("upload/" . $_SESSION['user'] . "/" . $_SESSION['avatar']) && isset($_SESSION['avatar'])){
-            unlink("upload/" . $_SESSION['user'] . "/" . $_SESSION['avatar']);
+        if(file_exists("profile_images/" . $_SESSION['avatar']) && isset($_SESSION['avatar'])){
+            unlink("profile_images/" . $_SESSION['avatar']);
         }
 
         // on insére le fichier 
@@ -53,13 +54,13 @@
 
 
         /* echo 'Upload effectué avec succès !'; */
-        header('location: dashboard.php?err=success_upload');
+        header('location: profile.php?err=success_upload');
         exit;
            
     }
     else
     {
-        header('location: dashboard.php');
+        header('location: profile.php');
         exit;
         /* echo 'Echec de l\'upload !'; */
     }

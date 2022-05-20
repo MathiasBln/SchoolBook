@@ -1,0 +1,340 @@
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+body {
+    padding: 20px;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background: #ecf0f3 !important;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    outline: none;
+}
+
+h1 {
+    text-align: center;
+    color: #551453;
+}
+
+.main_container {
+    max-width: 750px;
+    margin: 0 auto;
+    background: linear-gradient(145deg, #ffffff, #e3e3e3);
+    padding: 20px;
+    border: 1px solid rgba(23, 23, 23, .1);
+    border-radius: 3px;
+}
+
+.login_signup_container input[type='text'],
+.login_signup_container input[type='email'],
+.login_signup_container input[type='password'] {
+    width: 100%;
+    padding: 10px;
+    border: 0;
+    border-bottom: 1px solid #8795A1;
+    outline: none;
+    margin-bottom: 10px;
+    font-size: 14px;
+    background: none;
+    color: #232323;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.login_signup_container input[type='text']:focus,
+.login_signup_container input[type='email']:focus,
+.login_signup_container input[type='password']:focus {
+    border-color: #606F7B;
+}
+
+.login_signup_container label {
+    font-weight: bold;
+    color: #232323;
+}
+
+.login_signup_container input[type='submit'] {
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid rgba(23, 23, 23, .1);
+    outline: none;
+    background-color: #1F9D55;
+}
+
+.form_link {
+    float: right;
+    font-size: 16px;
+}
+
+.site_link,
+.login_signup_container p {
+    font-size: 14px;
+    text-align: center;
+    color: #3D4852;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.site_link:hover,
+.form_link:hover,
+.login_signup_container p a:hover {
+    text-decoration: underline;
+    color: #1F9D55;
+}
+
+.login_signup_container .errorMsg {
+    border: 2px solid #CC1F1A;
+    color: #CC1F1A;
+    letter-spacing: normal;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.login_signup_container .successMsg {
+    border: 2px solid #1F9D55;
+    color: #1F9D55;
+    letter-spacing: normal;
+    font-size: 16px;
+    padding: 10px;
+}
+
+
+/* PROFILE.PHP */
+
+.profile_container {
+    margin: 0 auto;
+    max-width: 100%;
+    background: #ecf0f3;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.profile_container nav ul {
+    list-style: none;
+    padding: 5px 0;
+    margin: 54px 71px;
+    display: flex;
+    flex-wrap: wrap;
+    border: none;
+    justify-content: flex-start;
+}
+
+.profile_container nav ul li a {
+    color: rgb(184, 111, 190);
+    font-size: 14px;
+    display: block;
+    padding: 5px 10px;
+    margin: 0 3px;
+}
+
+.profile_container nav ul li a:hover {
+    background: #efa2ff !important;
+    box-shadow: 0 4px 8px 0 #dda5eede, inset 0 -8px 16px 0 #b36bbf !important;
+    border-radius: 7px;
+    color: #ffffff;
+}
+
+.profile_container nav .badge {
+    background: #FFF;
+    display: inline-block;
+    padding: 0 5px;
+    margin-left: 3px;
+    color: #000;
+    border-radius: 20px;
+}
+
+.profile_container nav .redBadge {
+    background-color: #E3342F;
+    color: #FFF;
+}
+
+.inner_profile {
+    background-image: url('../images/background-form.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 40vh;
+    display: grid;
+    grid-template-columns: 0.7fr .5fr 2fr;
+    align-items: end;
+}
+
+.inner_profile .img {
+    overflow: hidden;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 12%), 0 2px 4px 0 rgb(0 0 0 / 8%);
+    border: 3px solid #3D4852;
+    margin: 0 auto;
+    margin-bottom: -47px;
+}
+
+.inner_profile .img img {
+    max-height: 100%;
+    width: auto;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.inner_profile h1 {
+    padding: 0;
+    margin: 0;
+    font-size: 25px;
+    text-transform: capitalize;
+}
+
+.active {
+    outline: none;
+    color: #FFF !important;
+    border-radius: 7px;
+    backdrop-filter: blur(15px);
+    background: #abe9ad;
+    box-shadow: 0 4px 8px 0 #a5eeac85, inset 0 -8px 16px 0 #47914e;
+}
+
+
+/* ALL USERS */
+
+.contain_activites {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.all_posts {
+    padding-left: 37px;
+}
+
+.all_users .usersWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 20px;
+    justify-items: center;
+}
+
+.all_users {
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 8px 0 rgb(235 217 239 / 69%), inset 0 -8px 16px 0 #87798d96;
+    border-radius: 20px;
+}
+
+.all_users h3 {
+    padding-left: 25px;
+    PADDING-TOP: 17px;
+    FONT-SIZE: 1.4em;
+    font-family: cursive;
+}
+
+.all_users .user_box {
+    display: grid;
+    border: none;
+    margin: 5px;
+    padding: 5px;
+}
+
+.user_box .user_img {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    background-color: #ecf0f3;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.user_box .user_img img {
+    height: 100%;
+    width: auto;
+}
+
+.user_box .user_info {
+    flex-grow: 1;
+}
+
+.user_info span {
+    display: block;
+}
+
+.user_info span:first-child {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-transform: capitalize;
+    color: #913d8b;
+    font-weight: 400;
+    padding-bottom: 5px;
+    font-size: .99em;
+}
+
+.see_profileBtn {
+    backdrop-filter: blur(15px);
+    background: #fae0ff;
+    box-shadow: 0 4px 8px 0 #dda5ee63, inset 0 -8px 16px 0 #9f5ea9;
+    border-radius: 3px;
+    border: none;
+    color: rgb(0 0 0);
+    font-size: 12px;
+    padding: 3px 7px;
+    text-transform: uppercase;
+}
+
+.see_profileBtn:hover {
+    background-color: #382B5F;
+}
+
+.actions {
+    text-align: center;
+    margin: 10px 0;
+    border: 1px solid rgba(23, 23, 23, .1);
+    padding: 10px;
+    background-color: #FFF;
+}
+
+.req_actionBtn {
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid rgba(23, 23, 23, .1);
+    color: #222222;
+}
+
+.acceptRequest,
+.sendRequest {
+    background-color: #794ACF;
+    color: #FFF;
+}
+
+.acceptRequest:hover,
+.sendRequest:hover {
+    background-color: #382B5F;
+}
+
+.unfriend,
+.ignoreRequest,
+.cancleRequest {
+    background-color: #EF5753;
+    color: #FFF;
+}
+
+.unfriend:hover,
+.ignoreRequest:hover,
+.cancleRequest:hover {
+    background-color: #E3342F;
+}
+
+
+/* RESPONSIVE */
+
+@media only screen and (max-width: 560px) {
+    .all_users .user_box {
+        width: 100%;
+    }
+}
