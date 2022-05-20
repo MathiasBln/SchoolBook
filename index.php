@@ -21,8 +21,6 @@ if(isset($_SESSION['email'])){
 </head>
 <body>
     <div class="login-form">
-
-
     <?php 
                 if(isset($_GET['login_err']))
                 {

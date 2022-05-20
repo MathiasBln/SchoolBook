@@ -21,7 +21,7 @@ $maRequete3->execute();
 $maRequete3->setFetchMode(PDO::FETCH_ASSOC);
 $posts = $maRequete3->fetchAll();
 
-$maRequete4 = $pdo->prepare("SELECT * FROM users u, relation r WHERE (r.users_iduser = 6 AND r.users_iduser1 = u.iduser) OR (r.users_iduser1 = 6 AND r.users_iduser = u.iduser);");
+$maRequete4 = $pdo->prepare("SELECT * FROM users u, relation r WHERE (r.id_demandeur = 6 AND r.id_receveur = u.iduser) OR (r.id_receveur = 6 AND r.id_demandeur = u.iduser);");
 $maRequete4->execute();
 $maRequete4->setFetchMode(PDO::FETCH_ASSOC);
 $friends = $maRequete4->fetchAll();

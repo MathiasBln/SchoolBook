@@ -1,6 +1,7 @@
 <?php 
     require_once 'configuration.php'; // On inclut la connexion à la bdd
 
+
     // Si les variables existent et qu'elles ne sont pas vides
     
     if(!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['password_retype']))
