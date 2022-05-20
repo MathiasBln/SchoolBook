@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>Mon blog</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<link href="style.css" rel="stylesheet" type="text/css" /> 
     </head>
         
@@ -21,7 +21,6 @@ catch(Exception $e)
         die('Erreur : '.$e->getMessage());
 }
 
-// Récupération du billet
 $req = $bdd->prepare('SELECT idavis, content,  FROM comments WHERE idavis = ?');
 $req->execute(array($_GET['comments']));
 $donnees = $req->fetch();
@@ -51,7 +50,7 @@ $req->execute(array($_GET['comments']));
 while ($donnees = $req->fetch())
 {
 ?>
-<p><strong><?php echo htmlspecialchars($donnees['posts_users_iduser']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></p>
+<p><strong><?php echo htmlspecialchars($donnees['posts_users_iduser']); ?></strong></p>
 <p><?php echo nl2br(htmlspecialchars($donnees['comments'])); ?></p>
 <?php
 } 

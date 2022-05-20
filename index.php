@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>SchoolBook</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<link href="style.css" rel="stylesheet" type="text/css" /> 
     </head>
         
@@ -21,7 +21,7 @@ catch(Exception $e)
 }
 
 
-$req = $bdd->query('SELECT idavis, content, FROM comments ORDER BY date_creation DESC LIMIT 0, 5');
+$req = $bdd->query('SELECT idavis, content, FROM comments ');
 
 while ($donnees = $req->fetch())
 {
