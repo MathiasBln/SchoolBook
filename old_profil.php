@@ -23,7 +23,7 @@ $maRequete3->execute([
 $maRequete3->setFetchMode(PDO::FETCH_ASSOC);
 $posts = $maRequete3->fetchAll();
 
-$maRequete4 = $pdo->prepare("SELECT * FROM users u, relation r WHERE (r.users_iduser = :id AND r.users_iduser1 = u.iduser) OR (r.users_iduser1 = :id AND r.users_iduser = u.iduser);");
+$maRequete4 = $pdo->prepare("SELECT * FROM users u, relation r WHERE (r.user_one = :id AND r.user_two = u.iduser) OR (r.user_two = :id AND r.user_one = u.iduser);");
 $maRequete4->execute([
     ":id" => $id
 ]);
@@ -46,7 +46,7 @@ $friends = $maRequete4->fetchAll();
     </script>
     <?php foreach($user as $element){ ?>
 
-    <title> Profil de <?php echo($element["name"]." ".$element["last_name"]); ?> </title>
+    <title> Profil de <?php echo($element["username"]." ".$element["last_name"]); ?> </title>
 </head>
 <body>
     <?php //require('partials/header.php'); ?>
@@ -61,7 +61,7 @@ $friends = $maRequete4->fetchAll();
         </div>
 
         <div id="profile_name">
-            <h1><?php  echo($element["first_name"]." ".$element["last_name"]);}; ?></h1>
+            <h1><?php  echo($element["username"]." ".$element["last_name"]);}; ?></h1>
         </div>
         <button> Add as friend </button>
         <div id="profile_content">              
@@ -91,7 +91,7 @@ $friends = $maRequete4->fetchAll();
                             {echo ("avatar/no_avatar.png");
                             } else{echo($friend["avatar"]);} ?> 
                                                                 alt="image_profile_friend"> 
-                    <?= $friend["first_name"] . ' ' . $friend["last_name"]; }; ?> 
+                    <?= $friend["username"] . ' ' . $friend["last_name"]; }; ?> 
                 </p>
                     
             </div>

@@ -8,7 +8,7 @@ $faker = Faker\Factory::create();
 
 $dbname = 'db_schoolbook';
 $username = 'root';
-$password = 'root';
+$password = '';
 
 $pdo = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
 

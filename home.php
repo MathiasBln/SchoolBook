@@ -1,7 +1,35 @@
 <?php
-session_start();
+require 'includes/init.php';
+if(isset($_SESSION['user_id']) && isset($_SESSION['email'])){
+    $user_data = $user_obj->find_user_by_id($_SESSION['user_id']);
+    if($user_data ===  false){
+        header('Location: logout.php');
+        exit;
+    }
+    // FETCH ALL USERS WHERE ID IS NOT EQUAL TO MY ID
+    $all_users = $user_obj->all_users($_SESSION['user_id']);
+    $all_posts_users = $user_obj->all_posts_users($_SESSION['user_id']);
+}
+
+else{
+    header('Location: logout.php');
+    exit;
+}
+
+// REQUEST NOTIFICATION NUMBER
+$get_req_num = $frnd_obj->request_notification($_SESSION['user_id'], false);
+// TOTAL FRIENDS
+$get_frnd_num = $frnd_obj->get_all_friends($_SESSION['user_id'], false);
+
+// GET MY($_SESSION['user_id']) ALL FRIENDS
+$get_all_friends = $frnd_obj->get_all_friends($_SESSION['user_id'], true);
+?>
+
+
+<?php
+//session_start();
 if(!isset($_SESSION['user'])){
-  header('Location:index.php');
+  header('Location: index.php');
   die();
 }
 
@@ -14,7 +42,7 @@ $maRequeteUsers->execute(array($_SESSION["user"]));
 $user = $maRequeteUsers->fetchAll();
 $saveUser = $user[0]['iduser'];
 
-$maRequeteContact = $pdo->prepare("SELECT * FROM users u, relation r WHERE r.users_iduser = :saveUser AND r.users_iduser1 = u.iduser");
+$maRequeteContact = $pdo->prepare("SELECT * FROM users u, relation r WHERE r.user_one = :saveUser AND r.user_two = u.iduser");
 $maRequeteContact->execute([
   ":saveUser" => $saveUser
 ]);
@@ -37,17 +65,6 @@ $maRequetePages = $pdo->prepare("SELECT * FROM pages p");
 $maRequetePages->execute();
 $maRequetePages->setFetchMode(PDO::FETCH_ASSOC);
 $pages = $maRequetePages->fetchAll();
-
-
-
-
-// $responses = $pdo->prepare("SELECT * FROM posts p, comments c WHERE p.idposts=c.posts_idposts");
-// $responses->execute([
-//   ":user" => $test
-// ]);
-// $responses->setFetchMode(PDO::FETCH_ASSOC);
-// $commentaries = $responses->fetchAll();
-
 
 ?>
 
@@ -85,7 +102,7 @@ $pages = $maRequetePages->fetchAll();
 
     <section id="profile" class="boxes">
       <img id="pic" src=<?= $user[0]["avatar"] ?> alt="">
-      <span id="name" ><?= $user[0]["first_name"] . ' ' . $user[0]["last_name"]?> </span>
+      <span id="name" ><?= $user[0]["username"] . ' ' . $user[0]["last_name"]?> </span>
       <div id="liste">
         <ul>
           <li><img class="svg" src="svg/user.svg" alt=""><a href="#">My Profil</a></li>
@@ -126,13 +143,13 @@ $pages = $maRequetePages->fetchAll();
           if ($result["users_iduser"] == $saveUser && $result["pages_idpages"] == NULL && $result["groups_idgroups"] == NULL){
             if($result["image"] == NULL){ ?>
               <div id="publication"> 
-                <p><?= $user[0]["first_name"] . ' ' . $user[0]["last_name"] ?></p>
+                <p><?= $user[0]["username"] . ' ' . $user[0]["last_name"] ?></p>
                 <p id="friends"><?= $result["content"] ?></p> 
                 <p id="date"><?= $result["date_publish"] ?></p>           
               </div>
             <?php }else { ?>
               <div id="publication"> 
-                <p><?= $user[0]["first_name"] . ' ' . $user[0]["last_name"] ?></p>
+                <p><?= $user[0]["username"] . ' ' . $user[0]["last_name"] ?></p>
                 <p id="friends"><?= $result["content"] ?></p> 
                 <img id="publicationImage" src= "upload/<?= $result["image"] ?>">
                 <p id="date"><?= $result["date_publish"] ?></p>           
@@ -143,13 +160,13 @@ $pages = $maRequetePages->fetchAll();
             if ($result["users_iduser"] == $contact["iduser"] && $result["pages_idpages"] == NULL && $result["groups_idgroups"] == NULL){ 
               if($result["image"] == NULL){ ?>
                 <div id="publication"> 
-                  <p><?= $contact["first_name"] . ' ' . $contact["last_name"] ?></p>
+                  <p><?= $contact["username"] . ' ' . $contact["last_name"] ?></p>
                   <p id="friends"><?= $result["content"] ?></p> 
                   <p id="date"><?= $result["date_publish"] ?></p> 
                 </div>
               <?php }else { ?>
                 <div id="publication"> 
-                  <p><?= $contact["first_name"] . ' ' . $contact["last_name"] ?></p>
+                  <p><?= $contact["username"] . ' ' . $contact["last_name"] ?></p>
                   <p id="friends"><?= $result["content"] ?></p> 
                   <img id="publicationImage" src= <?= $result["image"] ?>>
                   <p id="date"><?= $result["date_publish"] ?></p> 
@@ -166,7 +183,7 @@ $pages = $maRequetePages->fetchAll();
       <?php foreach($contacts as $contact): ?>
         <div id="contact"> 
           <img id="postPicture" src= <?= $contact["avatar"] ?>>
-          <p id="friends"><?= $contact["first_name"] . ' ' . $contact["last_name"] ?></p> 
+          <p id="friends"><?= $contact["username"] . ' ' . $contact["last_name"] ?></p> 
         </div>
       <?php endforeach; ?>
     </section>

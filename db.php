@@ -1,5 +1,5 @@
 <?php
-$con=mysqli_connect('localhost','root','root','db_schoolbook');
+$con=mysqli_connect('localhost','root','','db_schoolbook');
 if(!$con){
 	die('erreur de connexion a la base de donnée');
 }else{

@@ -37,8 +37,9 @@ $get_all_friends = $frnd_obj->get_all_friends($_SESSION['user_id'], true);
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 </head>
 <body >
+<?php require('partials/header.php');?>
     <div class="profile_container">
-        
+    
         <div class="inner_profile" style="background: url(<?= 'profile_banners/' . $_SESSION['banner']?>) no-repeat center; background-size: cover;height: 40vh">
       
             <div class="img">

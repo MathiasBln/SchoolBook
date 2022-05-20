@@ -6,7 +6,7 @@
          $db_host = "localhost";
          $db_name = "db_schoolbook";
          $db_username = "root";
-         $db_password = "root";
+         $db_password = "";
          
          $dsn_db = 'mysql:host='.$db_host.';dbname='.$db_name.';charset=utf8';
          try{
