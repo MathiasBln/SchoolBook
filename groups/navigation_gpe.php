@@ -1,9 +1,7 @@
 
-<section class="header-gpe">
-    <section class="banner-gpe">
-        <div class="banner-image-gpe" style="background-image:url(assets/<?=$groups[0]["idgroups"]?>-group.jpg)"></div>     
-    </section>
 
+<section class="header-gpe mt-5 p-5">
+    
      <nav class="navbar navbar-expand-xl navbar-light">
         <div class="container">
             <section class="group-profil">
