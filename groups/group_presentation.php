@@ -58,18 +58,18 @@ $myGroupMembers = $myRequest_members->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
  
-    <title>A propos de <?= $groups[0]["name"] ?></title>
+    <title> Presentation: <?= $groups[0]["name"] ?></title>
 </head>
 <body>
 
-    <?php require('../partials/header.php'); ?>
+    <?php require('header.php'); ?>
     <?php require('navigation_gpe.php'); ?>
     
 
     <div id="postTest">
         <?php require('postGroup.php'); ?>
         <div class="container container-gpe" style="text-align:center;">
-            <h2>Postes des membres: </h2>
+            <h2> Posts from our members: </h2>
         </div> 
           
         <div id="postSection">
@@ -90,18 +90,18 @@ $myGroupMembers = $myRequest_members->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-    <div id="members">
+    <div class="container mt-5" id="members">
 
-        <div class="card mb-3 shadow p-3 mb-5 bg-body rounded" style="max-width: 100vw;">
+        <div class="card mb-3 shadow mb-5 bg-body rounded" style="max-width: 100vw;">
             <div class="row g-0">
 
                 <div class="col-md-4">
-                    <img src="assets/people_tree.jpg" class="img-fluid rounded-start" alt="...">
+                    <img src="assets/people_tree.jpg" class="img-fluid rounded-start" alt="image de mains sur un tronc">
                 </div>
 
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">Voici les membres du groupe:</h5>
+                        <h5 class="card-title">Our members:</h5>
 
                         <ul class="list-group list-group-flush">
                             <div id="sectionMembers">

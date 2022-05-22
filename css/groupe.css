@@ -88,6 +88,7 @@ main {
     justify-content: center;
 }
 
+
 .list-group-item:hover {
     color:white!important;
     font-weight: 900;

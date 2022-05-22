@@ -41,12 +41,12 @@ if ( isset($_POST['submit'])) {
 ?>
 
 
-<form id="post" action="" method="POST" enctype="multipart/form-data" >
-    <input id="textZone" name="content" placeholder="Write something there..">
+<form class="container d-flex flex-column align-item-start mb-3" id="post" action="" method="POST" enctype="multipart/form-data" >
+    <input class="form-control-lg" id="textZone" name="content" placeholder="Write something there..">
     <img id="hr" src="svg/hr.svg" alt="">
-    <div id="submit">
-        <input type="file" name="file">
-        <button type="submit" name="submit">Post</button>
+    <div class="row input-group m-2" id="submit">
+        <input class="p-2 col" type="file" name="file">
+        <button type="submit" name="submit" class="p-2 mx-2 btn btn-success col-2">Post</button>
     </div>
 </form>
 

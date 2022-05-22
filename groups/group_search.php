@@ -39,11 +39,11 @@ $myGroups = $myRequest_search_gpe->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
  
-    <title>Rechercher un groupe</title>
+    <title>Search a group</title>
 </head>
 <body>
-  <?php require('../partials/header.php'); ?>
-  <article class="container-gpe mt-5">
+  <?php require('header.php'); ?>
+  <article class="container-gpe mt-5 pt-5">
     <div class="card mb-3 shadow bg-body rounded mt-5" style="max-width: 100vw;">
       <div class="row g-0 p-x-0 m-x-0">
 
@@ -53,7 +53,7 @@ $myGroups = $myRequest_search_gpe->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="col-8">
           <div class="card-body">
-            <h5 class="card-title">Groupes disponibles:</h5>
+            <h5 class="card-title">Available groups:</h5>
             <ul class="list-group list-group-flush">
             <?php for($i= 0; $i < count($myGroups); $i++): ?>  
             <li>
