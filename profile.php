@@ -37,7 +37,6 @@ $get_all_friends = $frnd_obj->get_all_friends($_SESSION['user_id'], true);
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 </head>
 <body >
-<?php require('partials/header.php');?>
     <div class="profile_container">
     
         <div class="inner_profile" style="background: url(<?= 'profile_banners/' . $_SESSION['banner']?>) no-repeat center; background-size: cover;height: 40vh">
@@ -53,6 +52,7 @@ $get_all_friends = $frnd_obj->get_all_friends($_SESSION['user_id'], true);
         </div>
         <nav>
             <ul>
+            <li><a href="home.php" rel="noopener noreferrer">Home</a></li>
                 <li><a href="profile.php" rel="noopener noreferrer" class="active">Profile</a></li>
                 <li><a href="notifications.php" rel="noopener noreferrer">Requests<span class="badge <?php
                 if($get_req_num > 0){
@@ -108,7 +108,7 @@ $get_all_friends = $frnd_obj->get_all_friends($_SESSION['user_id'], true);
                             </div>
         
                             <div class="post_img">
-                                <img src="profile_banners/'.$row->image.'" alt="image post">
+                                <img src="upload/'.$row->image.'" alt="image post">
                             </div>
                             
                             

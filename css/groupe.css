@@ -5,29 +5,30 @@
 * {
     list-style: none;
     text-decoration: none;
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 body {
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
     font-family: var(--body-fonts)!important;
 }
+
 
 /* Stylisation du header spécifique au groupe */
 
 .header-gpe {
     border-bottom: 1vh solid var(--neutral-dark-grayish);
-    padding-bottom:1em;
+    padding-bottom: 1em;
 }
 
 .banner-gpe {
-    height:20vh;
-    width:100vw; 
+    height: 20vh;
+    width: 100%;
 }
 
 .banner-image-gpe {
-    height:100%;
+    height: 100%;
     width: auto;
     background-repeat: no-repeat;
     background-size: cover;
@@ -39,38 +40,42 @@ body {
 /* Logo du groupe */
 
 .image-circle img {
-    height:5vh;
-    width:auto;
+    height: 5vh;
+    width: auto;
     margin: 1em;
-
 }
+
 
 /* Menu de navigation issu de bootstrap */
 
 .navbar-collapse {
     flex-grow: unset!important;
-    margin-right:10%;
+    margin-right: 10%;
 }
 
 .navbar-brand {
-    margin-left:10%;
-    color:#5a189a;
+    margin-left: 10%;
+    color: #5a189a;
     font-weight: 800;
 }
 
 .nav-link-gpe:hover {
-    filter:brightness(120%);
-    color:#5a189a!important;
+    filter: brightness(120%);
+    color: #5a189a!important;
     cursor: pointer;
 }
 
+
 /* Indication que le clique a lieu : suppression de l'ombre sous le bouton */
+
 .nav-link-gpe:active {
     transform: translate(0 0.3rem);
-    box-shadow: 0 0.1rem rgba(255,255,255,0.65);
+    box-shadow: 0 0.1rem rgba(255, 255, 255, 0.65);
 }
 
+
 /* MAIN */
+
 
 /* MAIN - GENERAL */
 
@@ -79,93 +84,99 @@ main {
     background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 0h2v20H9V0zm25.134.84l1.732 1-10 17.32-1.732-1 10-17.32zm-20 20l1.732 1-10 17.32-1.732-1 10-17.32zM58.16 4.134l1 1.732-17.32 10-1-1.732 17.32-10zm-40 40l1 1.732-17.32 10-1-1.732 17.32-10zM80 9v2H60V9h20zM20 69v2H0v-2h20zm79.32-55l-1 1.732-17.32-10L82 4l17.32 10zm-80 80l-1 1.732-17.32-10L2 84l17.32 10zm96.546-75.84l-1.732 1-10-17.32 1.732-1 10 17.32zm-100 100l-1.732 1-10-17.32 1.732-1 10 17.32zM38.16 24.134l1 1.732-17.32 10-1-1.732 17.32-10zM60 29v2H40v-2h20zm19.32 5l-1 1.732-17.32-10L62 24l17.32 10zm16.546 4.16l-1.732 1-10-17.32 1.732-1 10 17.32zM111 40h-2V20h2v20zm3.134.84l1.732 1-10 17.32-1.732-1 10-17.32zM40 49v2H20v-2h20zm19.32 5l-1 1.732-17.32-10L42 44l17.32 10zm16.546 4.16l-1.732 1-10-17.32 1.732-1 10 17.32zM91 60h-2V40h2v20zm3.134.84l1.732 1-10 17.32-1.732-1 10-17.32zm24.026 3.294l1 1.732-17.32 10-1-1.732 17.32-10zM39.32 74l-1 1.732-17.32-10L22 64l17.32 10zm16.546 4.16l-1.732 1-10-17.32 1.732-1 10 17.32zM71 80h-2V60h2v20zm3.134.84l1.732 1-10 17.32-1.732-1 10-17.32zm24.026 3.294l1 1.732-17.32 10-1-1.732 17.32-10zM120 89v2h-20v-2h20zm-84.134 9.16l-1.732 1-10-17.32 1.732-1 10 17.32zM51 100h-2V80h2v20zm3.134.84l1.732 1-10 17.32-1.732-1 10-17.32zm24.026 3.294l1 1.732-17.32 10-1-1.732 17.32-10zM100 109v2H80v-2h20zm19.32 5l-1 1.732-17.32-10 1-1.732 17.32 10zM31 120h-2v-20h2v20z' fill='%23ddd1f0' fill-opacity='0.14' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
+
 /* MAIN - Conteneur pour les membres */
 
 .container-gpe {
-    
-    width:100vw;
-    display:flex!important;
+    width: 100vw;
+    display: flex!important;
     justify-content: center;
 }
 
 .list-group-item:hover {
-    color:white!important;
+    color: white!important;
     font-weight: 900;
     background-color: #5a189a!important;
 }
 
 .post-gpe {
-    padding:2em;
+    padding: 2em;
 }
 
 #post-avatar {
-    width:60px!important;
-    height:60px!important;
-    border-radius:50%!important;
+    width: 60px!important;
+    height: 60px!important;
+    border-radius: 50%!important;
     border: solid black 1px!important;
 }
 
 
 /* Media queries sur la nav bar car à 1095px de large les buttons s'agrandissent sans respecter leur height initiale */
-@media screen and (max-width:1400px) {
 
-
-    
-}
+@media screen and (max-width:1400px) {}
 
 @media screen and (max-width:768px) {
-
     .col-8 {
-        width:unset!important;
+        width: unset!important;
     }
-
     .picture-container {
-        display:none;
+        display: none;
     }
-
     .img-tree {
-        display:none;
+        display: none;
     }
-
     .banner-gpe {
-        display:none;
+        display: none;
     }
 }
 
-
-
-
-
-
-
-#postTest{
-    display: block; 
+img#p-img {
+    width: 26vw;
 }
 
-#members{
+#postTest {
+    display: block;
+}
+
+#members {
     display: none;
 }
 
-#sectionCreation{
+#sectionCreation {
     height: 700px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#createGroup{
-    width: 650px;
-    box-shadow: 5px 5px 5px 5px lightgray;
+#createGroup {
+    width: 836px;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 5px 13px 0 rgb(203 163 211 / 28%), inset 0 -8px 16px 0 #b8a6bb5c;
+    border-radius: 10px;
+    height: 30em;
+    padding: 43px;
 }
-
 
 #post {
     width: 500px;
     height: 160px;
     margin-bottom: 50px;
-    margin-left:450px;
-    margin-top:50px;
-    box-shadow: 5px 5px 5px 5px lightgray;
+    margin-left: 450px;
+    margin-top: 50px;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 5px 13px 0 rgb(203 163 211 / 28%), inset 0 -8px 16px 0 #b8a6bb5c;
+    border-radius: 10px;
+}
+
+.btn-sucessPost {
+    background: #efa2ff !important;
+    box-shadow: 0 4px 8px 0 #dda5eede, inset 0 -8px 16px 0 #b36bbf !important;
+    border-radius: 7px;
+    color: #ffffff;
+    border: none;
+    width: 3em;
+    font-size: 1em;
 }
 
 #textZone {
@@ -180,7 +191,7 @@ main {
     justify-content: space-around;
 }
 
-#postSection{
+#postSection {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -188,20 +199,23 @@ main {
 }
 
 .publicationPost {
-    box-shadow: 5px 5px 5px 5px lightgray;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #fdffff, #efedf1);
+    box-shadow: 20px 20px 30px #dad7dc, -20px -20px 22px #ffffff;
     width: 500px;
 }
 
-#sectionMembers{
+#sectionMembers {
     display: grid;
     grid-template-columns: 3fr 1fr 1fr;
 }
 
-#contacts{
+#contacts {
     display: flex;
     justify-content: center;
+    padding-top: 195px;
 }
 
-#contact{
+#contact {
     box-shadow: 5px 5px 5px 5px lightgray;
 }

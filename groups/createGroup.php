@@ -30,7 +30,7 @@ if ( isset($_POST['submit'])) {
 
             $uniqueName = uniqid('', true);
             $file = $uniqueName.".".$extension;
-            move_uploaded_file($tmpName, './assets/'.$file);     
+            move_uploaded_file($tmpName, 'assets/'.$file);     
             $name = $_POST['name'];
             $description = $_POST['description'];
             $query = $pdo->prepare("INSERT INTO groups (name, description, image) VALUES (:name, :description, :img);
@@ -68,6 +68,7 @@ if ( isset($_POST['submit'])) {
 <div id="sectionCreation">
     <div id="createGroup">
    <h1>Create a group</h1>
+   <label for="avatar">images allowed : png, jpg, jpeg- max 20Mo</label>
     <form method="POST" action="" enctype="multipart/form-data">
         <div class="row mt-4 p-2">
             <div class="form-group col-md-6">
@@ -76,6 +77,8 @@ if ( isset($_POST['submit'])) {
             </div>
             <div class="form-group col-md-4">
                 <label>Change the picture</label>
+                
+
                 <input type="file" name="img"> 
             </div> 
         </div>

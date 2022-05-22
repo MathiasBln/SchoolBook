@@ -5,14 +5,14 @@ let ButtonContact = document.getElementById("buttonContact");
 
 function switchToContact() {
 
-    Pages.style.display='none';
-    Contact.style.display='block';
+    Pages.style.display = 'none';
+    Contact.style.display = 'grid';
 }
 
 function switchToPages() {
-    Pages.style.display='block';
-    Contact.style.display='none';
+    Pages.style.display = 'grid';
+    Contact.style.display = 'none';
 }
 
-ButtonPages.onclick=switchToPages;
-ButtonContact.onclick=switchToContact;
+ButtonPages.onclick = switchToPages;
+ButtonContact.onclick = switchToContact;

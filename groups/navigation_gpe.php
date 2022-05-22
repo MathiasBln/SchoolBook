@@ -1,8 +1,6 @@
 
-<section class="header-gpe">
-    <section class="banner-gpe">
-        <div class="banner-image-gpe" style="background-image:url(assets/<?=$groups[0]["idgroups"]?>-group.jpg)"></div>     
-    </section>
+<section class="header-gpe p-5 mt-5">
+    
 
      <nav class="navbar navbar-expand-xl navbar-light">
         <div class="container">
@@ -14,11 +12,11 @@
         
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">  
-                    <a class="nav-link nav-link-gpe" id="buttonPosts">A propos</a>
-                    <a class="nav-link nav-link-gpe" href="group_invitation.php?id_gpe=<?= $id_gpe?>">Invitez vos amis</a>
-                    <a class="nav-link nav-link-gpe" id="buttonMembers">Membres du groupe</a>
+                    <a class="nav-link nav-link-gpe" id="buttonPosts">About us</a>
+                    <a class="nav-link nav-link-gpe" href="group_invitation.php?id_gpe=<?= $id_gpe?>">Invite friends</a>
+                    <a class="nav-link nav-link-gpe" id="buttonMembers">Our members</a>
                     <?php if($user[0]["status"] == 1): ?>
-                        <a class="nav-link nav-link-gpe" href="updateGroup.php?id_gpe=<?= $id_gpe?>">Modifier</a>
+                        <a class="nav-link nav-link-gpe" href="updateGroup.php?id_gpe=<?= $id_gpe?>">Modify</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -28,7 +26,7 @@
     <div class="container">
         <h1> <?= $groups[0]["name"] ?></h1>
         <div class="a-propos-groupe">
-            <h4>A propos de nous</h4>
+            <h4>About us :</h4>
             <p><?= $groups[0]["description"]?></p>
         </div>
     </div>

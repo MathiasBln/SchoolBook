@@ -1,28 +1,29 @@
 /* Utilisation de grid pour aligner à gauche peu importe la largeur de la donnée (ne marche pas en flex) */
+
 .friends-gpe {
-    width:20%;
-    height:auto;
+    width: 20%;
+    height: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
 .friend-gpe-name {
-    grid-column:1;
+    grid-column: 1;
 }
 
 .friend-gpe-link {
-    grid-column:2;
+    grid-column: 2;
 }
 
-li {   
+li {
     list-style: none;
 }
 
 a {
-    color:black;
+    color: black;
 }
 
-#postPicture{
-    width: 10vw;
-    height: 10vh;
+#postPicture {
+    width: 136px;
+    height: 136px;
 }

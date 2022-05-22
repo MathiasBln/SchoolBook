@@ -62,7 +62,7 @@ $myGroupMembers = $myRequest_members->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 
-    <?php require('../partials/header.php'); ?>
+    <?php require('../partials/header-group.php'); ?>
     <?php require('navigation_gpe.php'); ?>
     
 
@@ -75,12 +75,12 @@ $myGroupMembers = $myRequest_members->fetchAll(PDO::FETCH_ASSOC);
         <div id="postSection">
            <?php foreach($postsGpe as $postGpe){ ?>
             <div class="publicationPost m-5">
-                <img src=<?= $postGpe["avatar"] ?> alt="avatar user" id="post-avatar">
+                <img src="../profile_images/<?= $postGpe["avatar"] ?>" alt="avatar user" id="post-avatar">
                 <h3 class="p-1"><?= $postGpe["username"] . ' ' . $postGpe["last_name"] ?></h3>
                 <p class="p-1"> <?= $postGpe["content"]; ?> </p>
                 <p class="p-1"> <?= $postGpe["date_publish"]; ?> </p>
-                <?php if($postGpe["image"] == NULL){ ?>
-                <img src="assets/<?= $postGpe["image"]; ?>" alt="image_du_post" class="p-5">
+                <?php if($postGpe["image"] != NULL){ ?>
+                <img src="assets/<?= $postGpe["image"]; ?>" alt="image_du_post" class="p-5" id="p-img">
                 <?php }; ?>
             </div>
         <?php }; ?> 
@@ -90,9 +90,9 @@ $myGroupMembers = $myRequest_members->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-    <div id="members">
+    <div id="members" class="container mt-5">
 
-        <div class="card mb-3 shadow p-3 mb-5 bg-body rounded" style="max-width: 100vw;">
+        <div class="card mb-3 shadow mb-5 bg-body rounded" style="max-width: 100vw;">
             <div class="row g-0">
 
                 <div class="col-md-4">
@@ -101,7 +101,7 @@ $myGroupMembers = $myRequest_members->fetchAll(PDO::FETCH_ASSOC);
 
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">Voici les membres du groupe:</h5>
+                        <h5 class="card-title">Our members:</h5>
 
                         <ul class="list-group list-group-flush">
                             <div id="sectionMembers">
@@ -109,11 +109,11 @@ $myGroupMembers = $myRequest_members->fetchAll(PDO::FETCH_ASSOC);
                                 <li class="list-group-item"><?= $myGroupMember["username"].' '.$myGroupMember["last_name"]?></li>
                                 
                                 <?php if(intval($user[0]["status"]) == 1): ?>
-                                    <a class="btn btn-danger m-1" href="delete.php?id=<?= $myGroupMember["iduser"] ?>&amp;gpe=<?= $id_gpe ?>">Exclure</a>
+                                    <a class="btn btn-danger m-1" href="delete.php?id=<?= $myGroupMember["iduser"] ?>&amp;gpe=<?= $id_gpe ?>">Exclude</a>
                                     <?php if($myGroupMember["status"] == 1): ?>
                                         <a class="btn btn-success m-1" href="updateToMember.php?id=<?= $myGroupMember["iduser"] ?>&amp;gpe=<?= $id_gpe ?>">Admin</a>
                                     <?php else: ?>
-                                        <a class="btn btn-success m-1" href="updateToAdmin.php?id=<?= $myGroupMember["iduser"] ?>&amp;gpe=<?= $id_gpe ?>">Membre</a>
+                                        <a class="btn btn-success m-1" href="updateToAdmin.php?id=<?= $myGroupMember["iduser"] ?>&amp;gpe=<?= $id_gpe ?>">Member</a>
                                     <?php endif; ?>
                                 <?php endif; ?>
                             <?php endforeach; ?>

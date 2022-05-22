@@ -6,14 +6,13 @@
 #navbar {
     position: fixed;
     top: 0;
+    width: 100%;
 }
 
 #logo {
     width: 6em;
     padding: 10px;
 }
-
-
 
 .d-flex {
     padding-left: 2em;
@@ -22,15 +21,15 @@
 #logout {
     margin-left: 30em;
     width: 6em;
-    background-color:purple;
-    border-radius: 20px;
+    background: #c384d0 !important;
+    box-shadow: 0 4px 8px 0 #ba8dc8de, inset 0 -8px 16px 0 #76447e !important;
+    border-radius: 7px;
     text-align: center;
-    margin-right: 90px;
-    margin-bottom: 2em;
+    margin-right: 105px;
 }
+
 #logout a {
     color: white;
-        
 }
 
 #border {

@@ -89,7 +89,7 @@ $pages = $maRequetePages->fetchAll();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/Home.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -128,11 +128,12 @@ $pages = $maRequetePages->fetchAll();
           foreach ($pages as $page):
             foreach ($publications as $publication):
               if ($publication["pages_idpages"] == $result["pages_idpages"] && $publication["pages_idpages"] == $page["idpages"]){ ?>
-                <div id="publication"> 
+                <div id="publication">
+                <p id="date"><?= $result["date_publish"] ?></p>  
                   <p id="friends"><?= $result["content"] ?></p> 
                   <p><?= $page["title"] ?></p>
                   <img id="publicationImage" src= "profile_banners/<?= $result["image"] ?>">
-                  <p id="date"><?= $result["date_publish"] ?></p> 
+                  
                 </div>
               <?php }
             endforeach;
@@ -144,23 +145,25 @@ $pages = $maRequetePages->fetchAll();
         <?php foreach ($results as $result):
           if ($result["users_iduser"] == $saveUser && $result["pages_idpages"] == NULL && $result["groups_idgroups"] == NULL){?>
               <div id="publication"> 
-                <p><?= $user[0]["username"] . ' ' . $user[0]["last_name"] ?></p>
+                <p id="username"><?= $user[0]["username"] . ' ' . $user[0]["last_name"] ?></p>
+                <p id="date"><?= $result["date_publish"] ?></p>
                 <p id="friends"><?= $result["content"] ?></p> 
                 <?php if($result["image"] != NULL){ ?>
                 <img id="publicationImage" src= "upload/<?= $result["image"] ?>">
                 <?php } ?>
-                <p id="date"><?= $result["date_publish"] ?></p>           
+                           
               </div>
           <?php   }
           foreach ($contacts as $contact):
             if ($result["users_iduser"] == $contact["iduser"] && $result["pages_idpages"] == NULL && $result["groups_idgroups"] == NULL){ ?>
                 <div id="publication"> 
-                  <p><?= $contact["username"] . ' ' . $contact["last_name"] ?></p>
+                  <p id="username"><?= $contact["username"] . ' ' . $contact["last_name"] ?></p>
+                  <p id="date"><?= $result["date_publish"] ?></p>
                   <p id="friends"><?= $result["content"] ?></p> 
                   <?php if($result["image"] != NULL){ ?>
-                  <img id="publicationImage" src= <?= $result["image"] ?>>
+                  <img id="publicationImage" src= "upload/<?= $result["image"] ?>">
                   <?php } ?>
-                  <p id="date"><?= $result["date_publish"] ?></p> 
+                   
                 </div>
               
             <?php  }
@@ -183,6 +186,6 @@ $pages = $maRequetePages->fetchAll();
 
   <?php require('partials/footer.php') ?>
 
-  <script src="buttons.js"></script>
+  <script src="Buttons.js"></script>
 </body>
 </html>

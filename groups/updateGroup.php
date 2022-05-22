@@ -70,7 +70,7 @@ if ( isset($_POST['submit'])) {
 
 <div id="sectionCreation">
     <div id="createGroup">
-    <h1>Modifier le groupe</h1>
+    <h1>Modify group</h1>
     <form method="POST" action="" enctype="multipart/form-data">
         <div class="row mt-4 p-2">
             <div class="form-group col-md-6">

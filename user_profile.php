@@ -55,6 +55,7 @@ $get_frnd_num = $frnd_obj->get_all_friends($_SESSION['user_id'], false);
         </div>
         <nav>
             <ul>
+            <li><a href="home.php" rel="noopener noreferrer">Home</a></li>
                 <li><a href="profile.php" rel="noopener noreferrer">Profile</a></li>
                 <li><a href="notifications.php" rel="noopener noreferrer">Requests<span class="badge <?php
                 if($get_req_num > 0){

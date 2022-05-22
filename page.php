@@ -1,6 +1,12 @@
 <?php
-$id = $_GET["id"];
 require('includes/pdo.php');
+$id = $_GET["id"];
+
+session_start();
+if(!isset($_SESSION['user'])){
+  header('Location: ../index.php');
+  die();
+}
 
 $maRequete = $pdo->prepare("SELECT * FROM pages WHERE idpages = :id");
  $maRequete->execute([
@@ -38,42 +44,31 @@ $subs = $maRequete4->fetchAll();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link  href="css/page.css" rel="stylesheet">
+    <link  href="css/Page.css" rel="stylesheet">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU:idauU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ:idjIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
-    <?php foreach($pages as $element){ ?>
 
-    <title> Page de <?php echo($element["title"]); ?> </title>
+    <title> Page de <?php echo($pages[0]["title"]); ?> </title>
 </head>
 <body>
-    <?php //require('partials/header.php'); ?>
+<?php require('./partials/header.php'); ?>
+    <?php  ?>
    
-
-    
+ 
     <div id="whole_content">
-        <div class="banner">
-            <img src=<?php
-                            if($element["banner_page"]==null)
-                            {echo("https://upload.wikimedia.org/wikipedia/commons/thumb/:id/:idd/Page_blanche_A4_points_1cm_hexa.svg/1200px-Page_blanche_A4_points_1cm_hexa.svg.png");
-                            }else {echo($element["banner_page"]);} ?> 
-                                                                alt="banner_page">
-            <img src=<?php 
-                            if($element["image_page"]==null)
-                            {echo ("https://upload.wikimedia.org/wikipedia/commons/thumb/:id/:idd/Page_blanche_A4_points_1cm_hexa.svg/1200px-Page_blanche_A4_points_1cm_hexa.svg.png");
-                            } else{echo($element["image_page"]);} ?> 
-                                                                alt="image_page" id="page_pic">
+        <div class="banner" style="background: url(profile_banners/<?= $pages[0]["banner"]; ?>) no-repeat center; background-size: cover;height: 40vh">
         </div>
-
+    <div class="allContent">
         <div id="title_page">
-            <h1><?php  echo($element["title"]);}; ?></h1>
+            <h1><?php  echo($pages[0]["title"]); ?></h1>
         </div>
-        <button style="visibility:visible;"> Subscribe </button>
+    <!-- <button class="btn-subscribe"> Subscribe </button> -->
         <div id="description">
             <p>
-                <?= $element["description"]; ?>
+                <?= $pages[0]["description"]; ?>
             </p>
         </div>
         <div id="page_content">              
@@ -83,40 +78,28 @@ $subs = $maRequete4->fetchAll();
                 <?php foreach($posts as $post){ ?>
                 <div class="post">
                     <h3></h3>
-                    <p> <?= $post["content"]; ?> </p>
-                    <img src=<?= $post["image"]; ?> alt="image_du_post">
                     <p> <?= $post["date_publish"]; }; ?> </p>
+                    <p> <?= $post["content"]; ?> </p>
+                    <img src="profile_banners/<?= $post["image"]; ?>" alt="image_du_post">
+                    
                     
                 </div>
             </div>
-            <div>
+        <div>
             <div id="admin">
                 <h2>Admins</h2>
                 <?php foreach($admins as $admin){ ?>
                     
-                <p> <img class="postPicture" src=<?php 
-                            if($admin["avatar"]==NULL)
-                            {echo ("avatar/no_avatar.png");
-                            } else{echo($admin["avatar"]);} ?>
+                <p> <img class="postPicture" src="profile_images/<?= $admin["avatar"] ?>"
                                                                 alt="image_page_sub"> 
-                    <a href="old_profil.php?id=<?= $admin["iduser"] ?>"><?= $admin["username"] . ' ' . $admin["last_name"]; };?> </a>
+                    <a href="profile.php?id=<?= $admin["iduser"] ?>"><?= $admin["username"] . ' ' . $admin["last_name"]; };?> </a>
                 </p>
             </div>
-            <div id="subs">
-                <h2>Subscribers</h2>
-                <?php foreach($subs as $sub){ ?>
-                
-                <p> <img class="postPicture" src=<?php 
-                            if($sub["avatar"]==NULL)
-                            {echo ("avatar/no_avatar.png");
-                            } else{echo($sub["avatar"]);} ?> 
-                                                                alt="image_page_sub"> 
-                    <a href="old_profil.php?id=<?= $sub["iduser"] ?>"><?= $sub["username"] . ' ' . $sub["last_name"]; }; ?> </a>
-                </p>
-            </div>            
+                      
             </div>
             
-        </div>    
+        </div>   
+        </div> 
     </div>
 
     <?php require('partials/footer.php'); ?>

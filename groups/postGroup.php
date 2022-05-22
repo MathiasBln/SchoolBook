@@ -46,7 +46,7 @@ if ( isset($_POST['submit'])) {
     <img id="hr" src="svg/hr.svg" alt="">
     <div id="submit">
         <input type="file" name="file">
-        <button type="submit" name="submit">Post</button>
+        <button type="submit" name="submit" class="btn-sucessPost">Post</button>
     </div>
 </form>
 
