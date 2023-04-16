@@ -1,7 +1,7 @@
 <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <img id="logo" src="svg/Logo.svg" alt="">
-        <form class="d-flex">
+        <img id="logo" src="svg/Logo.svg" alt="logo du réseau social">
+        <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search SchoolBook" aria-label="Search">
             <button id ="border"class="btn btn-outline-success" type="submit">Search</button>
         </form>
